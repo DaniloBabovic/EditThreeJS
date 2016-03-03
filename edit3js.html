@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Edit 3.JS</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+		<link rel="stylesheet" type="text/css" href="css/editor_menu.css">
+		<link rel="stylesheet" type="text/css" href="css/js_build.css">
+		<link rel="stylesheet" type="text/css" href="css/dialog.css">
+
+		<style type="text/css">
+
+			html, body 
+			{
+				height: 100%;
+			}
+
+			body 
+			{
+				background-color: #000000;
+				margin: 0;
+				font-family: Helvetica, sans-serif;;
+				overflow: hidden;
+			}
+
+			a 
+			{
+				color: #ffffff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container"></div>	
+
+		<!-- Common -->		
+			
+			<script src="js/three.min.js"></script>
+			<script src="js/Detector.js"></script>
+
+			<script src="js/libs/stats.min.js"></script>
+			<script src="js/libs/tween.min.js"></script>
+			<script src='js/libs/dat.gui.min.js'></script>
+
+			<script src="js/controls/OrbitControls.js"></script>
+
+			<script src="js/geometries/TextGeometry.js"></script>
+			
+			<script src="js/utils/FontUtils.js"></script>
+			<script src="js/utils/GeometryUtils.js"></script>
+
+			<script src="js/fonts/gentilis_bold.typeface.js"></script>
+			<script src="js/fonts/gentilis_regular.typeface.js"></script>
+			<script src="js/fonts/helvetiker_regular.typeface.js"></script>
+			<script src="js/fonts/helvetiker_bold.typeface.js"></script>
+			<script src="js/fonts/optimer_bold.typeface.js"></script>
+			<script src="js/fonts/optimer_regular.typeface.js"></script>
+
+		<!-- Common END -->		
+
+		<!-- Project -->				
+			
+			<script src="js/project/lights.js"></script>
+			<script src="js/project/load_scene.js"></script>
+			<script src="js/project/scene_objects.js"></script>
+
+		<!-- Project end-->				
+
+ 		<!-- EDITOR -->
+
+			<div id="left_top_div" class="left_top_div"></div>
+			<div id="right_top_div" class="right_top_div"></div>
+			<div id="active_div_parent" class="active_div_parent">
+				<div id="active_div" class="active_div"></div>
+				<div id="active_div_close" class="active_div_close">X</div>
+			</div>
+			<div id="code_div"></div>
+			
+			
+			<script src="js/editor/left_menu.js"></script>
+
+			<script src="js/editor/add_remove_light.js"></script>
+
+			<script src="js/editor/make_js/light_js_builder.js"></script>
+			<script src="js/editor/make_js/scene_objects_js_builder.js"></script>
+			<script src="js/editor/make_js/scene_object_static_code.js"></script>
+			<script src="js/editor/make_js/scene_object_dynamic_code.js"></script>
+
+			<script src="js/editor/add.js"></script>
+			<script src="js/editor/lights_gui.js"></script>
+			<script src="js/editor/material_gui.js"></script>
+			<script src="js/editor/item_gui.js"></script>
+			<script src="js/editor/group_gui.js"></script>
+			<script src="js/editor/controls_gui.js"></script>
+			<script src="js/editor/dialog.js"></script>
+
+			<!-- Dialog -->
+				<div id="dialog_root" class="dialog_root">
+					<div id="dialog_header" class="dialog_header">
+						<div id="dialog_title" class="dialog_title">
+							Title
+						</div>
+						<div id="dialog_close" class="dialog_close">
+							X
+						</div>
+					</div>
+						
+					<div id="dialog_body" class="dialog_body">
+							Some Text
+					</div>
+					<div id="dialog_buttons" class="dialog_buttons">
+						<div id="dialog_ok" class="dialog_ok">
+							OK
+						</div>
+						<div id="dialog_ok_cancel" class="dialog_ok_cancel">
+							<div id="button_no" class="button_no">No</div>
+							<div id="button_yes" class="button_yes">Yes</div>
+						</div>
+					</div>
+				</div>
+			<!-- Dialog end-->
+		<!-- EDITOR END-->
+
+		<script src="js/project/site_app.js"></script>			
+		
+	</body>
+</html>

@@ -1,0 +1,65 @@
+.left_top_div
+{
+	z-index: 5;
+	color: #FFFFFF;
+	position: absolute;
+	top: 0px;
+	left: 2px;
+}
+
+.active_div_parent
+{
+	display: none;
+	z-index: 5;
+	color: #FFFFFF;
+	position: absolute;
+	top: 2px;
+
+	right: 120px;
+}
+
+.active_div
+{
+	width: 270px;
+	float: left; 
+}
+
+.active_div_close
+{
+	float: left; 
+	
+	padding: 3px;
+	margin-left: 5px;
+
+	color: rgba(255, 255, 255, 1);
+	font-size: 80%;
+	font-weight: normal;
+	text-shadow: 0 0 1px rgba(0,255,255, 0);
+	text-align: center;
+
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.active_div_close:hover
+{
+	color: rgba(255, 0, 0, 1);
+	background-color: rgba(0, 0, 0, 1);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.active_div_close:active
+{
+	color: rgba(255, 255, 0, 1);
+}
+
+.right_top_div
+{
+	z-index: 5;
+	color: #FFFFFF;
+	position: absolute;
+	top: 2px;
+	right: 10px;
+	overflow: hidden;
+}
