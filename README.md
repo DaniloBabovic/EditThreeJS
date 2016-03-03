@@ -28,5 +28,7 @@ You will get auto-generated code for lights.js and load_scene.js but you must ma
 
 Happy coding!
 
+License: MIT 
+
 
 
