@@ -1,6 +1,8 @@
 # EditThreeJS
 Light editor for three.js
 
+![alt tag](http://playgroundthreed.appspot.com/doc/img/edit3js.png)
+
 Live demo: 
 http://playgroundthreed.appspot.com/doc/edit3js/edit3js.html?with_alias=true
 
