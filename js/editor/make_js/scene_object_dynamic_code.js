@@ -237,7 +237,7 @@ var PlainCode = function(makeLine, item_3d, tab)
 	var positionCode = new PositionCode(makeLine, tab + '	');
 	var mesh = item_3d.mesh;
 	var geometry = mesh.geometry;
-	//var p = mesh._planeParams;
+	//var p = mesh.parameters;
 	var p = geometry.parameters;
 	var ln = makeLine.line_tab_0;
 
@@ -260,14 +260,14 @@ var PlainCode = function(makeLine, item_3d, tab)
 	ln( tab + 'var parameters =\n');
 	ln( tab + '{\n');
 
-	ln( tab2 + 'material_name: "' + mesh._planeParams.material_name + '",\n');
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
 
 	new RepeatXY(makeLine, item_3d, tab);
 
-	if ( isNull(mesh._planeParams.parentGroup) == true )
+	if ( isNull(mesh.parameters.parentGroup) == true )
 		ln( tab2 + 'parentGroup: null,\n');
 	else
-		ln( tab2 + 'parentGroup: ' + mesh._planeParams.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
 
 	ln( tab + '\n');
 
@@ -323,13 +323,13 @@ var BoxCode = function(makeLine, item_3d, tab)
 	ln( tab + '{\n');
 
 
-	ln( tab2 + 'material_name: "' + mesh._boxParams.material_name + '",\n');
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
 	new RepeatXY(makeLine, item_3d, tab);
 
-	if ( isNull(mesh._boxParams.parentGroup) == true )
+	if ( isNull(mesh.parameters.parentGroup) == true )
 		ln( tab2 + 'parentGroup: null,\n');
 	else
-		ln( tab2 + 'parentGroup: ' + mesh._boxParams.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
 
 	ln( tab + '\n');
 
@@ -387,18 +387,18 @@ var Text3DCode = function(makeLine, item_3d, tab)
 	*/
 	var tab2 = tab + '	';
 
-	var p = mesh._textParams;
+	var p = mesh.parameters;
 	ln( tab + '\n');
 	ln( tab + 'var parameters =\n');
 	ln( tab + '{\n');
 
-	ln( tab2 + 'material_name: "' + mesh._textParams.material_name + '",\n');
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
 	new RepeatXY(makeLine, item_3d, tab);
 
-	if ( isNull(mesh._textParams.parentGroup) == true )
+	if ( isNull(mesh.parameters.parentGroup) == true )
 		ln( tab2 + 'parentGroup: null,\n');
 	else
-		ln( tab2 + 'parentGroup: ' + mesh._textParams.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
 
 	ln( tab + '\n');
 
@@ -469,13 +469,13 @@ var SphereCode = function(makeLine, item_3d, tab)
 	ln( tab + '{\n');
 
 	
-	ln( tab2 + 'material_name: "' + mesh._sphereParams.material_name + '",\n');
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
 	new RepeatXY(makeLine, item_3d, tab);
 
-	if ( isNull(mesh._sphereParams.parentGroup) == true )
+	if ( isNull(mesh.parameters.parentGroup) == true )
 		ln( tab2 + 'parentGroup: null,\n');
 	else
-		ln( tab2 + 'parentGroup: ' + mesh._sphereParams.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
 
 	ln( tab + '\n');
 
@@ -512,7 +512,7 @@ var CustomSphereCode = function(makeLine, item_3d, tab)
 	var positionCode = new PositionCode(makeLine, tab + '	');
 	var mesh = item_3d.mesh;
 	var geometry = mesh.geometry;
-	//var p = mesh._sphereParams;
+	//var p = mesh.parameters;
 	var p = geometry.parameters;
 	var ln = makeLine.line_tab_0;
 	/*
@@ -536,13 +536,13 @@ var CustomSphereCode = function(makeLine, item_3d, tab)
 	ln( tab + '{\n');
 
 	//r3 is round function on three decimals
-	ln( tab2 + 'material_name: "' + mesh._sphereParams.material_name + '",\n');
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
 	new RepeatXY(makeLine, item_3d, tab);
 
-	if ( isNull(mesh._sphereParams.parentGroup) == true )
+	if ( isNull(mesh.parameters.parentGroup) == true )
 		ln( tab2 + 'parentGroup: null,\n');
 	else
-		ln( tab2 + 'parentGroup: ' + mesh._sphereParams.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
 
 	ln( tab + '\n');
 

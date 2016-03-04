@@ -28,7 +28,7 @@ var InsertPlainMesh = function ( siteApp, sceneObjects, parameters, paramMateria
 	new SetTextureRepeat(meshMaterial, parameters);
 
 	var plane = new THREE.Mesh( geometry, meshMaterial );
-	plane._planeParams = parameters;
+	plane.parameters = parameters;
 
 	plane.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
 	plane.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);
@@ -74,7 +74,7 @@ var InsertBoxMesh = function ( siteApp, sceneObjects, parameters, paramMaterial)
 	generateVertexColors(geometry);
 	
 	var cube = new THREE.Mesh( geometry, meshMaterial );
-	cube._boxParams = parameters;
+	cube.parameters = parameters;
 
 	cube.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
 	cube.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);
@@ -119,7 +119,7 @@ var Insert3dText = function ( siteApp, sceneObjects, parameters, paramMaterial)
 	new SetTextureRepeat(meshMaterial, parameters);
 
 	mesh = new THREE.Mesh( textGeometry, meshMaterial );
-	mesh._textParams = parameters;
+	mesh.parameters = parameters;
 	this.mesh = mesh;
 
 	mesh.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
@@ -228,7 +228,7 @@ var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMate
 	new SetTextureRepeat(meshMaterial, parameters);
 
 	var sphere = new THREE.Mesh( geometry, meshMaterial );
-	sphere._sphereParams = parameters;
+	sphere.parameters = parameters;
 	//WIRES
 	var wireGeometry = new THREE.WireframeGeometry( geometry );
 	var wireMaterial = new THREE.LineBasicMaterial( {color: 0xCCCCCC} );
@@ -292,7 +292,7 @@ var InsertSphere = function ( siteApp, sceneObjects, parameters, paramMaterial)
 	new SetTextureRepeat(meshMaterial, parameters);
 	
 	var sphere = new THREE.Mesh( geometry, meshMaterial );
-	sphere._sphereParams = parameters;
+	sphere.parameters = parameters;
 
 	sphere.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
 	sphere.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);

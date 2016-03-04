@@ -7,7 +7,7 @@ var PlainGUI = function(item_3d_gui)
 		heightSegments — Optional. Default is 1.
 	*/
 
-	var parameters = item_3d_gui.mesh._planeParams;
+	var parameters = item_3d_gui.mesh.parameters;
 
 	var start_width = parameters.width;
 	var start_height = parameters.height;
@@ -15,7 +15,7 @@ var PlainGUI = function(item_3d_gui)
 	var start_widthSegments = parameters.widthSegments;
 	var start_heightSegments = parameters.heightSegments;
 
-	var topFolder = item_3d_gui.topFolder.addFolder("Plane Geometry");
+	var topFolder = item_3d_gui.topFolder.addFolder( "Plane Geometry" );
 	
 	function reset()
 	{
@@ -61,21 +61,21 @@ var PlainGUI = function(item_3d_gui)
 		}
 	}
 
-	var width = topFolder.add( parameters, 'width' ).min(1).max(1000).step(1);
-	var height = topFolder.add( parameters, 'height' ).min(1).max(1000).step(1);
+	var width = topFolder.add( parameters, 'width' ).min( 1 ).max( 1000 ).step( 1 );
+	var height = topFolder.add( parameters, 'height' ).min( 1 ).max( 1000 ).step( 1 );
 
-	var widthSegments = topFolder.add( parameters, 'widthSegments' ).min(1).max(200).step(1);
-	var heightSegments = topFolder.add( parameters, 'heightSegments' ).min(1).max(200).step(1);
+	var widthSegments = topFolder.add( parameters, 'widthSegments' ).min( 1 ).max( 200 ).step( 1 );
+	var heightSegments = topFolder.add( parameters, 'heightSegments' ).min( 1 ).max( 200 ).step( 1 );
 
-	width.onChange(   function(value) {  parameters.text = value; update("width");  }   );
-	height.onChange(   function(value) {  parameters.text = value; update("height");  }   );
+	width.onChange( function( value ) { parameters.text = value; update( "width" ); } );
+	height.onChange( function( value ) { parameters.text = value; update( "height" ); } );
 	
 
-	widthSegments.onChange(   function(value) {  parameters.text = value; update("widthSegments");  }   );
-	heightSegments.onChange(   function(value) {  parameters.text = value; update("heightSegments");  }   );
+	widthSegments.onChange( function( value ) { parameters.text = value; update( "widthSegments" ); } );
+	heightSegments.onChange( function( value ) { parameters.text = value; update( "heightSegments" ); } );
 	
 	
-	topFolder.add( parameters, 'reset' ).name('reset');
+	topFolder.add( parameters, 'reset' ).name( 'reset' );
 };
 
 var BoxGUI = function(item_3d_gui)
@@ -90,7 +90,7 @@ var BoxGUI = function(item_3d_gui)
 		depthSegments — Optional. Number of segmented faces along the depth of the sides. Default is 1.
 	*/
 
-	var parameters = item_3d_gui.mesh._boxParams;
+	var parameters = item_3d_gui.mesh.parameters;
 
 	var start_width = parameters.width;
 	var start_height = parameters.height;
@@ -100,7 +100,7 @@ var BoxGUI = function(item_3d_gui)
 	var start_heightSegments = parameters.heightSegments;
 	var start_depthSegments = parameters.depthSegments;
 
-	var topFolder = item_3d_gui.topFolder.addFolder("Box Geometry");
+	var topFolder = item_3d_gui.topFolder.addFolder( "Box Geometry" );
 	
 	function reset()
 	{
@@ -149,23 +149,23 @@ var BoxGUI = function(item_3d_gui)
 		}
 	}
 
-	var width = topFolder.add( parameters, 'width' ).min(1).max(500).step(1);
-	var height = topFolder.add( parameters, 'height' ).min(1).max(500).step(1);
-	var depth = topFolder.add( parameters, 'depth' ).min(1).max(500).step(1);
+	var width  = topFolder.add( parameters, 'width' ).min( 1 ).max( 500 ).step( 1 );
+	var height = topFolder.add( parameters, 'height' ).min( 1 ).max( 500 ).step( 1 );
+	var depth  = topFolder.add( parameters, 'depth' ).min( 1 ).max( 500 ).step( 1 );
 
-	var widthSegments = topFolder.add( parameters, 'widthSegments' ).min(1).max(42).step(1);
-	var heightSegments = topFolder.add( parameters, 'heightSegments' ).min(1).max(42).step(1);
-	var depthSegments = topFolder.add( parameters, 'depthSegments' ).min(1).max(42).step(1);
+	var widthSegments 	= topFolder.add( parameters, 'widthSegments' ).min( 1 ).max( 42 ).step( 1 );
+	var heightSegments = topFolder.add( parameters, 'heightSegments' ).min( 1 ).max( 42 ).step( 1 );
+	var depthSegments 	= topFolder.add( parameters, 'depthSegments' ).min( 1 ).max( 42 ).step( 1 );
 
-	width.onChange(   function(value) {  parameters.text = value; update("width");  }   );
-	height.onChange(   function(value) {  parameters.text = value; update("height");  }   );
-	depth.onChange(   function(value) {  parameters.text = value; update("depth");  }   );
+	width.onChange	( function( value ) { parameters.text = value; update( "width" ); } );
+	height.onChange	( function( value ) { parameters.text = value; update( "height" ); } );
+	depth.onChange	( function( value ) { parameters.text = value; update( "depth" ); } );
 
-	widthSegments.onChange(   function(value) {  parameters.text = value; update("widthSegments");  }   );
-	heightSegments.onChange(   function(value) {  parameters.text = value; update("heightSegments");  }   );
-	depthSegments.onChange(   function(value) {  parameters.text = value; update("depthSegments");  }   );
+	widthSegments.onChange	( function( value ) { parameters.text = value; update( "widthSegments" ); } );
+	heightSegments.onChange	( function( value ) { parameters.text = value; update( "heightSegments" ); } );
+	depthSegments.onChange	( function( value ) { parameters.text = value; update( "depthSegments" ); } );
 	
-	topFolder.add( parameters, 'reset' ).name('reset');
+	topFolder.add( parameters, 'reset' ).name( 'reset' );
 };
 
 var SphereCustomGUI = function(item_3d_gui)
@@ -179,7 +179,7 @@ var SphereCustomGUI = function(item_3d_gui)
 		thetaStart — specify vertical starting angle. Default is 0.
 		thetaLength — specify vertical sweep angle size. Default is Math.PI.
 	*/
-	var topFolder = item_3d_gui.topFolder.addFolder("SphereGeometry");	
+	var topFolder = item_3d_gui.topFolder.addFolder( "SphereGeometry" );	
 
 	var wire = item_3d_gui.mesh.children[ 0 ];
 
@@ -232,19 +232,19 @@ var SphereCustomGUI = function(item_3d_gui)
 	}
 	parameters["reset"] = reset;
 
-	var twoPi = Math.PI * 2;
-	var radius = topFolder.add( parameters, 'radius', 1, 100 );
-	var widthSegments = topFolder.add( parameters, 'widthSegments', 3, 32, 1 );
-	var heightSegments = topFolder.add( parameters, 'heightSegments', 3, 32, 1 );
-	var phiStart = topFolder.add( parameters, 'phiStart', 0, twoPi );
-	var phiLength = topFolder.add( parameters, 'phiLength', 0, twoPi );
-	var thetaStart = topFolder.add( parameters, 'thetaStart', 0, twoPi );
-	var thetaLength = topFolder.add( parameters, 'thetaLength', 0, twoPi );
+	var twoPi 			= Math.PI * 2;
+	var radius 			= topFolder.add( parameters, 'radius', 1, 100 );
+	var widthSegments 	= topFolder.add( parameters, 'widthSegments', 3, 32, 1 );
+	var heightSegments 	= topFolder.add( parameters, 'heightSegments', 3, 32, 1 );
+	var phiStart 		= topFolder.add( parameters, 'phiStart', 0, twoPi );
+	var phiLength 		= topFolder.add( parameters, 'phiLength', 0, twoPi );
+	var thetaStart 		= topFolder.add( parameters, 'thetaStart', 0, twoPi );
+	var thetaLength 	= topFolder.add( parameters, 'thetaLength', 0, twoPi );
 
 	var wireVisibleStart = wire.material.visible;
 	var wireParams = {visible: wireVisibleStart};
-	var wireGUI = topFolder.add( wireParams, 'visible');
-	wireGUI.name('Show wire');
+	var wireGUI = topFolder.add( wireParams, 'visible' );
+	wireGUI.name( 'Show wire' );
 
 	function update()
 	{
@@ -267,21 +267,21 @@ var SphereCustomGUI = function(item_3d_gui)
 	}
 
 
-	radius.onChange(   function(value) {  parameters.radius = value; update();  }   );
-	widthSegments.onChange(   function(value) {  parameters.widthSegments = value; update();  }   );
-	heightSegments.onChange(   function(value) {  parameters.heightSegments = value; update();  }   );
-	phiStart.onChange(   function(value) {  parameters.phiStart = value; update();  }   );
-	phiLength.onChange(   function(value) {  parameters.phiLength = value; update();  }   );
-	thetaStart.onChange(   function(value) {  parameters.thetaStart = value; update();  }   );
-	thetaLength.onChange(   function(value) {  parameters.thetaLength = value; update();  }   );
-	wireGUI.onChange(   function(value) 
-						{  
-								wireParams.visible = value; 
-								wire.material.visible = value;
-								update();  
-							}   
-						);
-	topFolder.add( parameters, 'reset' ).name("Reset");
+	radius.onChange			( function( value ) { parameters.radius 			= value; update(); } );
+	widthSegments.onChange	( function( value ) { parameters.widthSegments 		= value; update(); } );
+	heightSegments.onChange	( function( value ) { parameters.heightSegments 	= value; update(); } );
+	phiStart.onChange		( function( value ) { parameters.phiStart 			= value; update(); } );
+	phiLength.onChange		( function( value ) { parameters.phiLength 			= value; update(); } );
+	thetaStart.onChange		( function( value ) { parameters.thetaStart 		= value; update(); } );
+	thetaLength.onChange	( function( value ) { parameters.thetaLength 		= value; update(); } );
+	wireGUI.onChange		( function( value ) 
+								{  
+									wireParams.visible = value; 
+									wire.material.visible = value;
+									update();  
+								}   
+							);
+	topFolder.add( parameters, 'reset' ).name( "Reset" );
 };
 
 var SphereGUI = function(item_3d_gui)
@@ -295,7 +295,7 @@ var SphereGUI = function(item_3d_gui)
 		thetaStart — specify vertical starting angle. Default is 0.
 		thetaLength — specify vertical sweep angle size. Default is Math.PI.
 	*/
-	var topFolder = item_3d_gui.topFolder.addFolder("SphereGeometry");	
+	var topFolder = item_3d_gui.topFolder.addFolder( "SphereGeometry" );	
 
 	var mesh = item_3d_gui.mesh;
 	var material = mesh.material;
@@ -328,13 +328,13 @@ var SphereGUI = function(item_3d_gui)
 	{
 		try 
 		{
-			parameters.radius = startVals.radius;
-			parameters.widthSegments = startVals.widthSegments;
-			parameters.heightSegments = startVals.heightSegments;
-			parameters.phiStart = startVals.phiStart;
-			parameters.phiLength = startVals.phiLength;
-			parameters.thetaStart = startVals.thetaStart;
-			parameters.thetaLength = startVals.thetaLength;
+			parameters.radius 			= startVals.radius;
+			parameters.widthSegments 	= startVals.widthSegments;
+			parameters.heightSegments 	= startVals.heightSegments;
+			parameters.phiStart 		= startVals.phiStart;
+			parameters.phiLength 		= startVals.phiLength;
+			parameters.thetaStart 		= startVals.thetaStart;
+			parameters.thetaLength 		= startVals.thetaLength;
 
 			update();
 			updateDisplay(item_3d_gui.gui);
@@ -347,14 +347,14 @@ var SphereGUI = function(item_3d_gui)
 	}
 	parameters["reset"] = reset;
 
-	var twoPi = Math.PI * 2;
-	var radius = topFolder.add( parameters, 'radius', 1, 100 );
-	var widthSegments = topFolder.add( parameters, 'widthSegments', 3, 32, 1 );
-	var heightSegments = topFolder.add( parameters, 'heightSegments', 3, 32, 1 );
-	var phiStart = topFolder.add( parameters, 'phiStart', 0, twoPi );
-	var phiLength = topFolder.add( parameters, 'phiLength', 0, twoPi );
-	var thetaStart = topFolder.add( parameters, 'thetaStart', 0, twoPi );
-	var thetaLength = topFolder.add( parameters, 'thetaLength', 0, twoPi );
+	var twoPi 			= Math.PI * 2;
+	var radius			= topFolder.add( parameters, 'radius', 1, 100 );
+	var widthSegments 	= topFolder.add( parameters, 'widthSegments', 3, 32, 1 );
+	var heightSegments 	= topFolder.add( parameters, 'heightSegments', 3, 32, 1 );
+	var phiStart 		= topFolder.add( parameters, 'phiStart', 0, twoPi );
+	var phiLength 		= topFolder.add( parameters, 'phiLength', 0, twoPi );
+	var thetaStart 		= topFolder.add( parameters, 'thetaStart', 0, twoPi );
+	var thetaLength 	= topFolder.add( parameters, 'thetaLength', 0, twoPi );
 
 	function update()
 	{
@@ -372,22 +372,22 @@ var SphereGUI = function(item_3d_gui)
 		siteApp.render();
 	}
 
-	radius.onChange(   function(value) {  parameters.radius = value; update();  }   );
-	widthSegments.onChange(   function(value) {  parameters.widthSegments = value; update();  }   );
-	heightSegments.onChange(   function(value) {  parameters.heightSegments = value; update();  }   );
-	phiStart.onChange(   function(value) {  parameters.phiStart = value; update();  }   );
-	phiLength.onChange(   function(value) {  parameters.phiLength = value; update();  }   );
-	thetaStart.onChange(   function(value) {  parameters.thetaStart = value; update();  }   );
-	thetaLength.onChange(   function(value) {  parameters.thetaLength = value; update();  }   );
+	radius.onChange			( function( value ) { parameters.radius 			= value; update(); } );
+	widthSegments.onChange	( function( value ) { parameters.widthSegments 		= value; update(); } );
+	heightSegments.onChange	( function( value ) { parameters.heightSegments 	= value; update(); } );
+	phiStart.onChange		( function( value ) { parameters.phiStart 			= value; update(); } );
+	phiLength.onChange		( function( value ) { parameters.phiLength 			= value; update(); } );
+	thetaStart.onChange		( function( value ) { parameters.thetaStart 		= value; update(); } );
+	thetaLength.onChange	( function( value ) { parameters.thetaLength 		= value; update(); } );
 
-	topFolder.add( parameters, 'reset' ).name("Reset");
+	topFolder.add( parameters, 'reset' ).name( "Reset" );
 };
 
 var Text3DGUI = function(item_3d_gui)
 {
-	var topFolder = item_3d_gui.topFolder.addFolder("Text Geometry");	
+	var topFolder = item_3d_gui.topFolder.addFolder( "Text Geometry" );	
 
-	var parameters = item_3d_gui.mesh._textParams;
+	var parameters = item_3d_gui.mesh.parameters;
 
 	/*
 		font — THREE.Font.
@@ -452,17 +452,17 @@ var Text3DGUI = function(item_3d_gui)
 		{
 			try
 			{
-				if (ctrlName == "text")
+				if (ctrlName == "text" )
 				{
 					parameters.text = start_text;
 					reset();
 				} 
-				else if (ctrlName == "font")
+				else if (ctrlName == "font" )
 				{
 					parameters.font = start_font;
 					reset();
 				}
-				else if (ctrlName == "weight")
+				else if (ctrlName == "weight" )
 				{
 					parameters.weight = start_weight;
 					reset();
@@ -477,28 +477,28 @@ var Text3DGUI = function(item_3d_gui)
 		}
 	}
 
-	var text = topFolder.add( parameters, 'text' );
-	var size = topFolder.add( parameters, 'size' );
-	var height = topFolder.add( parameters, 'height' );
-	var curveSegments = topFolder.add( parameters, 'curveSegments' );
-	var weight = topFolder.add( parameters, 'weight', [ "bold", "normal"]  ).name('weight');
+	var text 			= topFolder.add( parameters, 'text' );
+	var size 			= topFolder.add( parameters, 'size' );
+	var height 			= topFolder.add( parameters, 'height' );
+	var curveSegments 	= topFolder.add( parameters, 'curveSegments' );
+	var weight 			= topFolder.add( parameters, 'weight', [ "bold", "normal"]  ).name( 'weight' );
 	//var font = topFolder.add( parameters, 'font' );
-	var font = topFolder.add( parameters, 'font', [ "gentilis", "helvetiker", "optimer"] ).name('font');
-	var bevelEnabled = topFolder.add( parameters, 'bevelEnabled' );
-	var bevelThickness = topFolder.add( parameters, 'bevelThickness' );
-	var bevelSize = topFolder.add( parameters, 'bevelSize' );
+	var font 			= topFolder.add( parameters, 'font', [ "gentilis", "helvetiker", "optimer"] ).name( 'font' );
+	var bevelEnabled 	= topFolder.add( parameters, 'bevelEnabled' );
+	var bevelThickness 	= topFolder.add( parameters, 'bevelThickness' );
+	var bevelSize 		= topFolder.add( parameters, 'bevelSize' );
 
-	text.onChange(   function(value) {  parameters.text = value; update("text");  }   );
-	size.onChange(   function(value) {  parameters.size = value; update("size");  }   );
-	height.onChange(   function(value) {  parameters.height = value; update("height");  }   );
-	curveSegments.onChange(   function(value) {  parameters.curveSegments = value; update("curveSegments");  }   );
-	weight.onChange(   function(value) {  parameters.weight = value; update("weight");  }   );
-	font.onChange(   function(value) {  parameters.font = value; update("font");  }   );
-	bevelEnabled.onChange(   function(value) {  parameters.bevelEnabled = value; update("bevelEnabled");  }   );
-	bevelThickness.onChange(   function(value) {  parameters.bevelThickness = value; update("bevelThickness");  }   );
-	bevelSize.onChange(   function(value) {  parameters.bevelSize = value; update("bevelSize");  }   );
+	text.onChange			( function( value ) { parameters.text 			= value; update( "text" ); } );
+	size.onChange			( function( value ) { parameters.size 			= value; update( "size" ); } );
+	height.onChange			( function( value ) { parameters.height 		= value; update( "height" ); } );
+	curveSegments.onChange	( function( value ) { parameters.curveSegments 	= value; update( "curveSegments" ); } );
+	weight.onChange			( function( value ) { parameters.weight 		= value; update( "weight" ); } );
+	font.onChange			( function( value ) { parameters.font 			= value; update( "font" ); } );
+	bevelEnabled.onChange	( function( value ) { parameters.bevelEnabled 	= value; update( "bevelEnabled" ); } );
+	bevelThickness.onChange	( function( value ) { parameters.bevelThickness = value; update( "bevelThickness" ); } );
+	bevelSize.onChange		( function( value ) { parameters.bevelSize 		= value; update( "bevelSize" ); } );
 	
-	topFolder.add( parameters, 'reset' ).name("Reset");
+	topFolder.add( parameters, 'reset' ).name( "Reset" );
 };
 
 var PositionGUI = function(editorGUI, gui, mesh, parentFolder, name, absolutePosition)
@@ -540,13 +540,13 @@ var PositionGUI = function(editorGUI, gui, mesh, parentFolder, name, absolutePos
 
 	var folderPosition = parentFolder.addFolder(name);
 	
-	var positionX = folderPosition.add( parameters, 'x' ).min(editorGUI.x_min).max(editorGUI.x_max).step(5);
-	var positionY = folderPosition.add( parameters, 'y' ).min(editorGUI.x_min).max(editorGUI.x_max).step(5);
-	var positionZ = folderPosition.add( parameters, 'z' ).min(editorGUI.x_min).max(editorGUI.x_max).step(5);
+	var positionX = folderPosition.add( parameters, 'x' ).min( editorGUI.x_min ).max( editorGUI.x_max ).step( 5 );
+	var positionY = folderPosition.add( parameters, 'y' ).min( editorGUI.x_min ).max( editorGUI.x_max ).step( 5 );
+	var positionZ = folderPosition.add( parameters, 'z' ).min( editorGUI.x_min ).max( editorGUI.x_max ).step( 5 );
 
-	positionX.onChange(function(value)	{   mesh.position.x = value; siteApp.look(getPosition());  });
-	positionY.onChange(function(value) {  mesh.position.y = value; siteApp.look(getPosition());  });
-	positionZ.onChange(function(value){   mesh.position.z = value; siteApp.look(getPosition());  });
+	positionX.onChange(function( value )	{ mesh.position.x = value; siteApp.look(getPosition()); });
+	positionY.onChange(function( value ) 	{ mesh.position.y = value; siteApp.look(getPosition()); });
+	positionZ.onChange(function( value )	{ mesh.position.z = value; siteApp.look(getPosition()); });
 
 	var resetTitle = "To " + start_x.toString() + ", " + start_y.toString() + ", " + start_z.toString();
 	folderPosition.add( parameters, 'reset' ).name(resetTitle);
@@ -581,14 +581,14 @@ var RotationGui = function(editorGUI, gui, item_3d, topFolder)
 		siteApp.lookAt(item_3d.absolutePosition());
 	}
 
-	var folderRotation = topFolder.addFolder('Rotation');
-	var rotationX = folderRotation.add( parameters, 'rx' ).min(-180).max(180).step(5);
-	var rotationY = folderRotation.add( parameters, 'ry' ).min(-180).max(180).step(5);
-	var rotationZ = folderRotation.add( parameters, 'rz' ).min(-180).max(180).step(5);
+	var folderRotation = topFolder.addFolder( 'Rotation' );
+	var rotationX = folderRotation.add( parameters, 'rx' ).min( -180 ).max( 180 ).step( 5 );
+	var rotationY = folderRotation.add( parameters, 'ry' ).min( -180 ).max( 180 ).step( 5 );
+	var rotationZ = folderRotation.add( parameters, 'rz' ).min( -180 ).max( 180 ).step( 5 );
 	
-	rotationX.onChange(function(value) {  mesh.rotation.x = toRad(value); siteApp.render();  });
-	rotationY.onChange(function(value) {  mesh.rotation.y = toRad(value); siteApp.render();  });
-	rotationZ.onChange(function(value) {  mesh.rotation.z = toRad(value); siteApp.render();  });
+	rotationX.onChange(function( value ) { mesh.rotation.x = toRad( value ); siteApp.render(); });
+	rotationY.onChange(function( value ) { mesh.rotation.y = toRad( value ); siteApp.render(); });
+	rotationZ.onChange(function( value ) { mesh.rotation.z = toRad( value ); siteApp.render(); });
 
 	var resetTitle = "To " + toDeg(start_x) + ", " + toDeg(start_y) + ", " + toDeg(start_z);
 	folderRotation.add( parameters, 'reset' ).name(resetTitle);
@@ -623,13 +623,13 @@ var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
 		siteApp.render();
 	}
 
-	var folderScale = topFolder.addFolder('Scale');
+	var folderScale = topFolder.addFolder( 'Scale' );
 	var prop = {proportional: true};
-	var proportional_boolean = folderScale.add( prop, 'proportional' ).name('proportional');
+	var proportional_boolean = folderScale.add( prop, 'proportional' ).name( 'proportional' );
 
-	var scaleX = folderScale.add( parameters, 'sx' ).min(0.1).max(5).step(0.05);
-	var scaleY = folderScale.add( parameters, 'sy' ).min(0.1).max(5).step(0.05);
-	var scaleZ = folderScale.add( parameters, 'sz' ).min(0.1).max(5).step(0.05);
+	var scaleX = folderScale.add( parameters, 'sx' ).min( 0.1 ).max( 5 ).step( 0.05 );
+	var scaleY = folderScale.add( parameters, 'sy' ).min( 0.1 ).max( 5 ).step( 0.05 );
+	var scaleZ = folderScale.add( parameters, 'sz' ).min( 0.1 ).max( 5 ).step( 0.05 );
 	
 	function change(oldValue, value)
 	{
@@ -646,7 +646,7 @@ var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
 
 		siteApp.render();
 	}
-	scaleX.onChange(	function(value)	
+	scaleX.onChange(	function( value )	
 						{  
 							if (prop.proportional == true)
 								change(mesh.scale.x, value); 	
@@ -659,7 +659,7 @@ var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
 						} 
 					);
 
-	scaleY.onChange(	function(value)	
+	scaleY.onChange(	function( value )	
 						{  
 							if (prop.proportional == true)
 								change(mesh.scale.y, value); 	
@@ -672,7 +672,7 @@ var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
 						} 
 					);
 
-	scaleZ.onChange(	function(value)	
+	scaleZ.onChange(	function( value )	
 						{  
 							if (prop.proportional == true)
 								change(mesh.scale.z, value); 	
@@ -705,7 +705,7 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 
 	function changeGroup(yesNo)
 	{
-		if (yesNo == 0) return;
+		if (yesNo == 0 ) return;
 		for (var i = childs.length - 1; i >= 0; i--) 
 		{
 			groupFolder.remove(childs[i]);
@@ -767,14 +767,14 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 
 	function getName(group)
 	{
-		if (group.type == 'Scene') return 'Scene';
+		if (group.type == 'Scene' ) return 'Scene';
 		return group.parameters.auto_label;
 	}
 
 	function confirmNewGroup(selectedGroup)
 	{
 		newGroup = selectedGroup;
-		if (newGroup.type == 'Scene') 
+		if (newGroup.type == 'Scene' ) 
 			newGroupIsScene = true;
 		else
 			newGroupIsScene = false;
@@ -786,7 +786,7 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 		new DialogYesNo(text, "Change group", changeGroup);	
 	}
 
-	groupFolder = topFolder.addFolder("Group");
+	groupFolder = topFolder.addFolder( "Group" );
 	function insert()
 	{
 		function insertScene()
@@ -803,23 +803,23 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 			{
 				function open()
 				{
-					new Dialog("Scene is root group.", "Scene is parent");
+					new Dialog( "Scene is root group.", "Scene is parent" );
 				}
-				buttonOpenGroup = groupFolder.add({open: open}, "open").name("Scene is parent");
+				buttonOpenGroup = groupFolder.add({open: open}, "open" ).name( "Scene is parent" );
 			}
 			else
 			{
-				var groupChecked = groupFolder.add(selected, "selected").name('Scene');
+				var groupChecked = groupFolder.add(selected, "selected" ).name( 'Scene' );
 				childs.push(groupChecked);
 				groupChecked.onChange(   
-										function(value) 
+										function( value ) 
 										{  
 											if (value == false)
 											{
 												selected.selected = true;
 												var text = "You can't deselect group.\n";
 												text += "You can select new one, then, this group will be deselected.";
-												new Dialog(text, "Info");
+												new Dialog(text, "Info" );
 											}
 											else
 											{
@@ -849,21 +849,21 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 				{
 					editorGUI.makeRightGUI_for_group(group);
 				}
-				buttonOpenGroup = groupFolder.add({open: open}, "open").name("Open " + group.parameters.auto_label);
+				buttonOpenGroup = groupFolder.add({open: open}, "open" ).name( "Open " + group.parameters.auto_label);
 			}
 			else
 			{
-				var groupChecked = groupFolder.add(selected, "selected").name(group.parameters.auto_label);
+				var groupChecked = groupFolder.add(selected, "selected" ).name(group.parameters.auto_label);
 				childs.push(groupChecked);
 				groupChecked.onChange(   
-										function(value) 
+										function( value ) 
 										{  
 											if (value == false)
 											{
 												selected.selected = true;
 												var text = "You can't deselect group.\n";
 												text += "You can select new one, then, this group will be deselected.";
-												new Dialog(text, "Info");
+												new Dialog(text, "Info" );
 											}
 											else
 											{
@@ -910,7 +910,7 @@ var Item_3d_GUI = function(editorGUI, item_3d)
 	var positionGUI;
 	//Not inserted
 	var gui = new dat.GUI({ autoPlace: false });
-	gui.domElement.style["max-height"] = (window.innerHeight - 10) + 'px';
+	gui.domElement.style["max-height"] = (window.innerHeight - 10 ) + 'px';
 	gui.domElement.style["overflow-y"] = "scroll";
 
 	this.gui = gui;
@@ -940,23 +940,23 @@ var Item_3d_GUI = function(editorGUI, item_3d)
 	new ScaleGui(editorGUI, gui, item_3d, topFolder);
 
 	var type = item_3d.geometry_name;
-	if (type == "TextGeometry")
+	if (type == "TextGeometry" )
 	{
 		new Text3DGUI(item_3d_gui);
 	}
-	else if (type == "BoxGeometry")
+	else if (type == "BoxGeometry" )
 	{
 		new BoxGUI(item_3d_gui);
 	}
-	else if (type == "PlaneGeometry")
+	else if (type == "PlaneGeometry" )
 	{
 		new PlainGUI(item_3d_gui);
 	}
-	else if (type == "SphereGeometry")
+	else if (type == "SphereGeometry" )
 	{
 		new SphereGUI(item_3d_gui);
 	}
-	else if (type == "CustomSphere")
+	else if (type == "CustomSphere" )
 	{
 		new SphereCustomGUI(item_3d_gui);
 	}
@@ -964,19 +964,19 @@ var Item_3d_GUI = function(editorGUI, item_3d)
 	this.material = new ObjectMaterijal(item_3d_gui);
 
 	function select(){ editorGUI.siteApp.lookAt(item_3d.absolutePosition()); }
-	topFolder.add( {select: select}, 'select' ).name('Select');
+	topFolder.add( {select: select}, 'select' ).name( 'Select' );
 
 	function remove()
 	{ 
 		new RemoveObject3d(editorGUI, item_3d);
 	}
-	topFolder.add( {remove: remove}, 'remove' ).name('Remove');
+	topFolder.add( {remove: remove}, 'remove' ).name( 'Remove' );
 
 	function code()
 	{ 
 		new Snippet(editorGUI, item_3d);
 	}
-	topFolder.add( {code: code}, 'code' ).name('JS code');
+	topFolder.add( {code: code}, 'code' ).name( 'JS code' );
 
 	// function material_name()
 	// { 
@@ -988,5 +988,5 @@ var Item_3d_GUI = function(editorGUI, item_3d)
 	// 	}
 	// 	alert(name);
 	// }
-	// topFolder.add( {material_name: material_name}, 'material_name' ).name('Material name');
+	// topFolder.add( {material_name: material_name}, 'material_name' ).name( 'Material name' );
 };

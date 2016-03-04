@@ -172,6 +172,9 @@ var MeshLambertMaterialGUI = function(item_3d_gui, parentFolder, changeMaterial,
 	material = item_3d_gui.item_3d.mesh.material;
 	geometry = item_3d_gui.item_3d.mesh.geometry;
 	
+	item_3d_gui.item_3d.mesh.parameters.material_name = "MeshLambertMaterial";
+
+	
 	//var material = item_3d_gui.mesh.material;
 	//var geometry = item_3d_gui.mesh.geometry;
 
@@ -316,6 +319,7 @@ var MeshPhongGUI = function(item_3d_gui, parentFolder, changeMaterial, active_gu
 	material = item_3d_gui.item_3d.mesh.material;
 	geometry = item_3d_gui.item_3d.mesh.geometry;
 
+	item_3d_gui.item_3d.mesh.parameters.material_name = "MeshPhongMaterial";
 
 	generateVertexColors(geometry);
 
