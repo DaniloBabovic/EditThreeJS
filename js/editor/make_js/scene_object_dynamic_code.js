@@ -1,61 +1,61 @@
 
-var  RepeatXY = function(makeLine, item_3d, tab)
+var  RepeatXY = function( makeLine, item_3d, tab)
 {
 	var material = item_3d.mesh.material;
 
 	tab2 = tab + '	';
-	if(isNull(material.map) == false)
+	if( isNull( material.map ) == false )
 	{
-		makeLine.line_tab_0(tab2 + 'repeat_x: ' + material.map.repeat.x + ',\n');
-		makeLine.line_tab_0(tab2 + 'repeat_y: ' + material.map.repeat.y + ',\n');
-		makeLine.line_tab_0(tab2 + 'mapName: "' + material.map.name + '",\n');
+		makeLine.line_tab_0( tab2 + 'repeat_x: ' + material.map.repeat.x + ',\n' );
+		makeLine.line_tab_0( tab2 + 'repeat_y: ' + material.map.repeat.y + ',\n' );
+		makeLine.line_tab_0( tab2 + 'mapName: "' + material.map.name + '",\n' );
 	}	
 }
 
-var MapMaterialCode  = function(makeLine, material, tab)
+var MapMaterialCode  = function( makeLine, material, tab)
 {
 	tab2 = tab + '	';
-	if(isNull(material.map) == true)
+	if( isNull( material.map ) == true )
 	{
-		makeLine.line_tab_0(tab2 + 'map: null,\n');		
+		makeLine.line_tab_0( tab2 + 'map: null,\n' );		
 	}
 	else
 	{
-		makeLine.line_tab_0(tab2 + 'map: textureMaps["' + material.map.name + '"],\n');				
+		makeLine.line_tab_0( tab2 + 'map: textureMaps[ "' + material.map.name + '" ],\n' );				
 	}
 }
 
-var PositionCode = function(makeLine, tab)
+var PositionCode = function( makeLine, tab)
 {
-	function insert(mesh)
+	function insert( mesh )
 	{
 		var position = mesh.position;
 		var rotation = mesh.rotation;
 		var scale = mesh.scale;
 
-		var txt = '\n' + tab +	'position_x: ' 		+	r3(position.x) + 
-								', position_y: ' 	+ 	r3(position.y) + 
-								', position_z: ' 	+ 	r3(position.z) + ',\n'; 
+		var txt = '\n' + tab +	'position_x: ' 		+	r3( position.x) + 
+								', position_y: ' 	+ 	r3( position.y) + 
+								', position_z: ' 	+ 	r3( position.z ) + ',\n'; 
 
-		makeLine.line_tab_0(txt);
+		makeLine.line_tab_0( txt );
 
 		var txt =  tab + 	'rotation_x: ' 		+ 	r3(rotation.x) + 
 							', rotation_y: ' 	+ 	r3(rotation.y) + 
-							', rotation_z: ' 	+  	r3(rotation.z) + ',\n'; 
+							', rotation_z: ' 	+  	r3(rotation.z ) + ',\n'; 
 
-		makeLine.line_tab_0(txt);
+		makeLine.line_tab_0( txt );
 
-		var txt =  tab + 	  'scale_x: ' 	+	r3(scale.x) + 
-							', scale_y: '	+	r3(scale.y) + 
-							', scale_z: ' 	+ 	r3(scale.z) + ',\n'; 
+		var txt =  tab + 	  'scale_x: ' 	+	r3( scale.x) + 
+							', scale_y: '	+	r3( scale.y) + 
+							', scale_z: ' 	+ 	r3( scale.z ) + ',\n'; 
 
-		makeLine.line_tab_0(txt);
+		makeLine.line_tab_0( txt );
 	}
 	this.insert = insert;
 	return this;
 }
 
-var MeshPhongMaterialCode = function(makeLine, material, tab)
+var MeshPhongMaterialCode = function( makeLine, material, tab)
 {
 	/*
 		var paramMaterial = 
@@ -88,75 +88,75 @@ var MeshPhongMaterialCode = function(makeLine, material, tab)
 	var ln = makeLine.line_tab_0;
 	var tab2 = tab + '	';
 
-	ln('\n');
-	ln( tab + 	'var paramMaterial = \n');
-	ln( tab + 	'{\n');
-	ln( tab2 + 	'transparent : ' + material.transparent + ',\n');
-	ln( tab2 + 	'opacity : ' + material.opacity + ',\n');
+	ln( '\n' );
+	ln( tab + 	'var paramMaterial = \n' );
+	ln( tab + 	'{\n' );
+	ln( tab2 + 	'transparent : ' + material.transparent + ',\n' );
+	ln( tab2 + 	'opacity : ' + material.opacity + ',\n' );
 	
-	ln('\n');
+	ln( '\n' );
 
-	ln( tab2 + 'color : 0x' + material.color.getHexString () + ',\n');
-	ln( tab2 + 'specular : 0x' + material.specular.getHexString () + ',\n');
-	ln( tab2 + 'emissive : 0x' + material.emissive.getHexString () + ',\n');
-	ln( tab2 + 'emissiveIntensity : ' + material.emissiveIntensity + ',\n');
-	ln( tab2 + 'shininess : ' + material.shininess + ',\n');
+	ln( tab2 + 'color : 0x' + material.color.getHexString () + ',\n' );
+	ln( tab2 + 'specular : 0x' + material.specular.getHexString () + ',\n' );
+	ln( tab2 + 'emissive : 0x' + material.emissive.getHexString () + ',\n' );
+	ln( tab2 + 'emissiveIntensity : ' + material.emissiveIntensity + ',\n' );
+	ln( tab2 + 'shininess : ' + material.shininess + ',\n' );
 
-	ln('\n');
+	ln( '\n' );
 
 	ln( tab2 + 'vertexColors : ' + material.vertexColors + 
-						', //THREE.NoColors, THREE.FaceColors, THREE.VertexColors\n');
+						', //THREE.NoColors, THREE.FaceColors, THREE.VertexColors\n' );
 
 	ln( tab2 + 'side : ' + material.side + 
-						', //THREE.FrontSide, THREE.BackSide, THREE.DoubleSide\n');
+						', //THREE.FrontSide, THREE.BackSide, THREE.DoubleSide\n' );
 	ln( tab2 + 'shading : ' + material.shading + 
-						', //THREE.SmoothShading, //THREE.FlatShading\n');
+						', //THREE.SmoothShading, //THREE.FlatShading\n' );
 
 	ln( tab2 + 	'blending : ' + material.blending + 
 								', // NoBlending, NormalBlending, AdditiveBlending, ' + 
-								'SubtractiveBlending, MultiplyBlending, CustomBlending\n');
+								'SubtractiveBlending, MultiplyBlending, CustomBlending\n' );
 
-	ln( tab2 + 'fog : ' + material.fog + ',\n');
-	ln( tab2 + 'wireframe : ' + material.wireframe + ',\n');
+	ln( tab2 + 'fog : ' + material.fog + ',\n' );
+	ln( tab2 + 'wireframe : ' + material.wireframe + ',\n' );
 
-	ln('\n');
+	ln( '\n' );
 
-	new MapMaterialCode(makeLine, material, tab);
+	new MapMaterialCode( makeLine, material, tab);
 
 	// var mapName = 'null'; 
-	// if (isNull(material.map) == false) mapName = material.map.name;
-	// ln( tab2 + 'map : ' + mapName + ',\n');
+	// if ( isNull( material.map ) == false ) mapName = material.map.name;
+	// ln( tab2 + 'map : ' + mapName + ',\n' );
 
-	// if (isNull(material.map) == false)
+	// if ( isNull( material.map ) == false )
 	// {
-	// 	ln( tab2 + 'repeat_x : ' + material.map.repeat.x + ',\n');		
-	// 	ln( tab2 + 'repeat_y : ' + material.map.repeat.y + ',\n');
+	// 	ln( tab2 + 'repeat_x : ' + material.map.repeat.x + ',\n' );		
+	// 	ln( tab2 + 'repeat_y : ' + material.map.repeat.y + ',\n' );
 	// }
 	// else
 	// {
-	// 	ln( tab2 + 'repeat_x : 1,\n');		
-	// 	ln( tab2 + 'repeat_y : 1,\n');		
+	// 	ln( tab2 + 'repeat_x : 1,\n' );		
+	// 	ln( tab2 + 'repeat_y : 1,\n' );		
 	// }
 
-	ln( tab2 + 'envMap : ' + material.envMap + ',\n');
-	ln( tab2 + 'lightMap : ' + material.lightMap + ',\n');
-	ln( tab2 + 'specularMap : ' + material.specularMap + ',\n');
-	ln( tab2 + 'alphaMap : ' + material.alphaMap + ',\n');
+	ln( tab2 + 'envMap : ' + material.envMap + ',\n' );
+	ln( tab2 + 'lightMap : ' + material.lightMap + ',\n' );
+	ln( tab2 + 'specularMap : ' + material.specularMap + ',\n' );
+	ln( tab2 + 'alphaMap : ' + material.alphaMap + ',\n' );
 
-	ln('\n');
-	ln( tab2 + 'reflectivity : ' + material.reflectivity + ',\n');
-	ln( tab2 + 'refractionRatio : ' + material.refractionRatio + ',\n');
+	ln( '\n' );
+	ln( tab2 + 'reflectivity : ' + material.reflectivity + ',\n' );
+	ln( tab2 + 'refractionRatio : ' + material.refractionRatio + ',\n' );
 
-	ln('\n');
-	ln( tab2 + 'polygonOffset : ' + material.polygonOffset + ',\n');
+	ln( '\n' );
+	ln( tab2 + 'polygonOffset : ' + material.polygonOffset + ',\n' );
 	ln( tab2 + 'polygonOffsetFactor : ' + material.polygonOffsetFactor +
-		 					',// positive value pushes polygon further away\n');
+		 					',// positive value pushes polygon further away\n' );
 
-	ln( tab2 + 'polygonOffsetUnits : ' + material.polygonOffsetUnits + '\n');
-	ln( tab + '};');
+	ln( tab2 + 'polygonOffsetUnits : ' + material.polygonOffsetUnits + '\n' );
+	ln( tab + '};' );
 }
 
-var MeshLambertMaterialCode = function(makeLine, material, tab)
+var MeshLambertMaterialCode = function( makeLine, material, tab)
 {
 	/*
 		var paramMaterial = 
@@ -185,56 +185,56 @@ var MeshLambertMaterialCode = function(makeLine, material, tab)
 	var ln = makeLine.line_tab_0;
 	var tab2 = tab + '	';
 
-	ln('\n');
-	ln(  tab + 'var paramMaterial = \n');
-	ln(  tab + '{\n');
-	ln(  tab + '	transparent : ' + material.transparent + ',\n');
-	ln(  tab + '	opacity : ' + material.opacity + ',\n');
-	ln('\n');
-	ln(  tab + '	color : 0x' + material.color.getHexString () + ',\n');
-	ln(  tab + '	emissive : 0x' + material.emissive.getHexString () + ',\n');
-	ln(  tab + '	emissiveIntensity : 0x' + material.emissiveIntensity + ',\n');
-	ln('\n');
+	ln( '\n' );
+	ln(  tab + 'var paramMaterial = \n' );
+	ln(  tab + '{\n' );
+	ln(  tab + '	transparent : ' + material.transparent + ',\n' );
+	ln(  tab + '	opacity : ' + material.opacity + ',\n' );
+	ln( '\n' );
+	ln(  tab + '	color : 0x' + material.color.getHexString () + ',\n' );
+	ln(  tab + '	emissive : 0x' + material.emissive.getHexString () + ',\n' );
+	ln(  tab + '	emissiveIntensity : 0x' + material.emissiveIntensity + ',\n' );
+	ln( '\n' );
 
 	ln(  tab + '	vertexColors : ' + material.vertexColors +
-					', //THREE.NoColors, THREE.FaceColors, THREE.VertexColors\n');
+					', //THREE.NoColors, THREE.FaceColors, THREE.VertexColors\n' );
 
 	ln(  tab + '	side : ' + material.side +
-				', //THREE.FrontSide, THREE.BackSide, THREE.DoubleSide\n');
+				', //THREE.FrontSide, THREE.BackSide, THREE.DoubleSide\n' );
 	
 	ln(  tab + '	blending : ' + material.blending +
 					', // NoBlending, NormalBlending, AdditiveBlending, ' +
-					'SubtractiveBlending, MultiplyBlending, CustomBlending\n');
+					'SubtractiveBlending, MultiplyBlending, CustomBlending\n' );
 
-	ln(  tab + '	fog : ' + material.fog + ',\n');
-	ln(  tab + '	wireframe : ' + material.wireframe + ',\n');
+	ln(  tab + '	fog : ' + material.fog + ',\n' );
+	ln(  tab + '	wireframe : ' + material.wireframe + ',\n' );
 
-	ln('\n');
+	ln( '\n' );
 
-	//ln(  tab + '	map : ' + material.map + ',\n');
-	new MapMaterialCode(makeLine, material, tab);
+	//ln(  tab + '	map : ' + material.map + ',\n' );
+	new MapMaterialCode( makeLine, material, tab);
 
-	ln(  tab + '	envMap : ' + material.envMap + ',\n');
-	ln(  tab + '	lightMap : ' + material.lightMap + ',\n');
-	ln(  tab + '	specularMap : ' + material.specularMap + ',\n');
-	ln(  tab + '	alphaMap : ' + material.alphaMap + ',\n');
+	ln(  tab + '	envMap : ' + material.envMap + ',\n' );
+	ln(  tab + '	lightMap : ' + material.lightMap + ',\n' );
+	ln(  tab + '	specularMap : ' + material.specularMap + ',\n' );
+	ln(  tab + '	alphaMap : ' + material.alphaMap + ',\n' );
 
-	ln('\n');
-	ln(  tab + '	reflectivity : ' + material.reflectivity + ',\n');
-	ln(  tab + '	refractionRatio : ' + material.refractionRatio + ',\n');
+	ln( '\n' );
+	ln(  tab + '	reflectivity : ' + material.reflectivity + ',\n' );
+	ln(  tab + '	refractionRatio : ' + material.refractionRatio + ',\n' );
 
-	ln('\n');
-	ln(  tab + '	polygonOffset : ' + material.polygonOffset + ',\n');
+	ln( '\n' );
+	ln(  tab + '	polygonOffset : ' + material.polygonOffset + ',\n' );
 	ln(  tab + '	polygonOffsetFactor : ' + material.polygonOffsetFactor +
-		 						',// positive value pushes polygon further away\n');
+		 						',// positive value pushes polygon further away\n' );
 
-	ln(  tab + '	polygonOffsetUnits : ' + material.polygonOffsetUnits + ',\n');
-	ln(  tab + '};');
+	ln(  tab + '	polygonOffsetUnits : ' + material.polygonOffsetUnits + ',\n' );
+	ln(  tab + '};' );
 }
 
-var PlainCode = function(makeLine, item_3d, tab)
+var PlainCode = function( makeLine, item_3d, tab)
 {
-	var positionCode = new PositionCode(makeLine, tab + '	');
+	var positionCode = new PositionCode( makeLine, tab + '	' );
 	var mesh = item_3d.mesh;
 	var geometry = mesh.geometry;
 	//var p = mesh.parameters;
@@ -256,20 +256,20 @@ var PlainCode = function(makeLine, item_3d, tab)
 	*/
 	var tab2 = 	tab + '	';
 		
-	ln( tab + '\n');
-	ln( tab + 'var parameters =\n');
-	ln( tab + '{\n');
+	ln( tab + '\n' );
+	ln( tab + 'var parameters =\n' );
+	ln( tab + '{\n' );
 
-	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n' );
 
-	new RepeatXY(makeLine, item_3d, tab);
+	new RepeatXY( makeLine, item_3d, tab);
 
-	if ( isNull(mesh.parameters.parentGroup) == true )
-		ln( tab2 + 'parentGroup: null,\n');
+	if ( isNull( mesh.parameters.parentGroup ) == true )
+		ln( tab2 + 'parentGroup: null,\n' );
 	else
-		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n' );
 
-	ln( tab + '\n');
+	ln( tab + '\n' );
 
 	var text = 	tab2 + 	
 				'width: ' 			+ p.width + ', ' + 
@@ -278,26 +278,26 @@ var PlainCode = function(makeLine, item_3d, tab)
 				'heightSegments: ' 	+ p.heightSegments + ',' + 
 				'\n';
 				
-	ln(text);
-	positionCode.insert(mesh);
-	ln( tab + '};\n');
+	ln( text );
+	positionCode.insert( mesh );
+	ln( tab + '};\n' );
 
 	var materialType = mesh.material.type;
-	if (materialType == 'MeshPhongMaterial')
+	if ( materialType == 'MeshPhongMaterial' )
 	{
-		new MeshPhongMaterialCode(makeLine, mesh.material, tab);
+		new MeshPhongMaterialCode( makeLine, mesh.material, tab);
 	}
-	else if (materialType == 'MeshLambertMaterial')
+	else if ( materialType == 'MeshLambertMaterial' )
 	{
-		new MeshLambertMaterialCode(makeLine, mesh.material, tab);
+		new MeshLambertMaterialCode( makeLine, mesh.material, tab);
 	}
-	ln( tab + 	'var plainMesh = new InsertPlainMesh( siteApp, sceneObjects, parameters, paramMaterial );\n');
+	ln( tab + 	'var plainMesh = new InsertPlainMesh( siteApp, sceneObjects, parameters, paramMaterial );\n' );
 }
 
-var BoxCode = function(makeLine, item_3d, tab)
+var BoxCode = function( makeLine, item_3d, tab)
 {
 
-	var positionCode = new PositionCode(makeLine, tab + '	');
+	var positionCode = new PositionCode( makeLine, tab + '	' );
 	var mesh = item_3d.mesh;
 	var p = mesh.geometry.parameters;
 	var ln = makeLine.line_tab_0;
@@ -318,20 +318,20 @@ var BoxCode = function(makeLine, item_3d, tab)
 	*/
 	var tab2 = 	tab + '	';
 
-	ln( tab + '\n');
-	ln( tab + 'var parameters =\n');
-	ln( tab + '{\n');
+	ln( tab + '\n' );
+	ln( tab + 'var parameters =\n' );
+	ln( tab + '{\n' );
 
 
-	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
-	new RepeatXY(makeLine, item_3d, tab);
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n' );
+	new RepeatXY( makeLine, item_3d, tab);
 
-	if ( isNull(mesh.parameters.parentGroup) == true )
-		ln( tab2 + 'parentGroup: null,\n');
+	if ( isNull( mesh.parameters.parentGroup ) == true )
+		ln( tab2 + 'parentGroup: null,\n' );
 	else
-		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n' );
 
-	ln( tab + '\n');
+	ln( tab + '\n' );
 
 	var text = 	tab2 + 	
 				'width: ' + p.width + ', ' + 
@@ -347,26 +347,26 @@ var BoxCode = function(makeLine, item_3d, tab)
 				tab2 + 'depthSegments: ' + p.depthSegments + ', ' +
 				'// — Optional. Number of segmented faces along the depth of the sides. Default is 1.\n';
 
-	ln(text);
-	positionCode.insert(mesh);
-	ln( tab + '};\n');
+	ln( text );
+	positionCode.insert( mesh );
+	ln( tab + '};\n' );
 
 	var materialType = mesh.material.type;
-	if (materialType == 'MeshPhongMaterial')
+	if ( materialType == 'MeshPhongMaterial' )
 	{
-		new MeshPhongMaterialCode(makeLine, mesh.material, tab);
+		new MeshPhongMaterialCode( makeLine, mesh.material, tab);
 	}
-	else if (materialType == 'MeshLambertMaterial')
+	else if ( materialType == 'MeshLambertMaterial' )
 	{
-		new MeshLambertMaterialCode(makeLine, mesh.material, tab);
+		new MeshLambertMaterialCode( makeLine, mesh.material, tab);
 	}
-	ln( tab + 'var boxMesh = new InsertBoxMesh( siteApp, sceneObjects, parameters, paramMaterial );\n');
+	ln( tab + 'var boxMesh = new InsertBoxMesh( siteApp, sceneObjects, parameters, paramMaterial );\n' );
 
 }
 
-var Text3DCode = function(makeLine, item_3d, tab)
+var Text3DCode = function( makeLine, item_3d, tab)
 {
-	var positionCode = new PositionCode(makeLine, tab + '	');
+	var positionCode = new PositionCode( makeLine, tab + '	' );
 	var mesh = item_3d.mesh;
 	var geometry = mesh.geometry;
 	var ln = makeLine.line_tab_0;
@@ -388,61 +388,61 @@ var Text3DCode = function(makeLine, item_3d, tab)
 	var tab2 = tab + '	';
 
 	var p = mesh.parameters;
-	ln( tab + '\n');
-	ln( tab + 'var parameters =\n');
-	ln( tab + '{\n');
+	ln( tab + '\n' );
+	ln( tab + 'var parameters =\n' );
+	ln( tab + '{\n' );
 
-	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
-	new RepeatXY(makeLine, item_3d, tab);
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n' );
+	new RepeatXY( makeLine, item_3d, tab);
 
-	if ( isNull(mesh.parameters.parentGroup) == true )
-		ln( tab2 + 'parentGroup: null,\n');
+	if ( isNull( mesh.parameters.parentGroup ) == true )
+		ln( tab2 + 'parentGroup: null,\n' );
 	else
-		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n' );
 
-	ln( tab + '\n');
+	ln( tab + '\n' );
 
 	var text = tab + 	'\ttext: "' + p.text + 
 						'", size:' + p.size + 
 						', height: ' + p.height + 
 						', curveSegments: ' + p.curveSegments + ',\n';
 
-	ln(text);
+	ln( text );
 
 	var text = tab + 	'\tfont: "' + p.font + 
 						'", weight: "' + p.weight + 
 						'",	style: "' + p.style + '",\n';
 
-	ln(text);
+	ln( text );
 
 	var text = tab + 	'\tbevelThickness: ' + p.bevelThickness + 
 						',	bevelSize: ' + p.bevelSize + 
 						',	bevelSegments: ' + p.bevelSegments + 
 						', bevelEnabled: ' + p.bevelEnabled + ',\n';
 
-	ln(text);
+	ln( text );
 
 	var text = 	 tab + 	'\tmaterial: ' + p.material + 
 						', extrudeMaterial: ' + p.extrudeMaterial + ',\n\n';
 
-	positionCode.insert(mesh);
-	makeLine.line_tab_0( tab + '};\n');
+	positionCode.insert( mesh );
+	makeLine.line_tab_0( tab + '};\n' );
 
 	var materialType = mesh.material.type;
-	if (materialType == 'MeshPhongMaterial')
+	if ( materialType == 'MeshPhongMaterial' )
 	{
-		new MeshPhongMaterialCode(makeLine, mesh.material, tab);
+		new MeshPhongMaterialCode( makeLine, mesh.material, tab);
 	}
-	else if (materialType == 'MeshLambertMaterial')
+	else if ( materialType == 'MeshLambertMaterial' )
 	{
-		new MeshLambertMaterialCode(makeLine, mesh.material, tab);
+		new MeshLambertMaterialCode( makeLine, mesh.material, tab);
 	}
-	ln( tab + 'var text_3d = new Insert3dText( siteApp, sceneObjects, parameters, paramMaterial );\n');
+	ln( tab + 'var text_3d = new Insert3dText( siteApp, sceneObjects, parameters, paramMaterial );\n' );
 };
 
-var SphereCode = function(makeLine, item_3d, tab)
+var SphereCode = function( makeLine, item_3d, tab)
 {
-	var positionCode = new PositionCode(makeLine, tab + '	');
+	var positionCode = new PositionCode( makeLine, tab + '	' );
 	var mesh = item_3d.mesh;
 	var geometry = mesh.geometry;
 	var p = mesh.geometry.parameters;
@@ -464,20 +464,20 @@ var SphereCode = function(makeLine, item_3d, tab)
 		};
 	*/
 	var tab2 = tab + '	';
-	ln( tab + '\n');
-	ln( tab + 'var parameters =\n');
-	ln( tab + '{\n');
+	ln( tab + '\n' );
+	ln( tab + 'var parameters =\n' );
+	ln( tab + '{\n' );
 
 	
-	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
-	new RepeatXY(makeLine, item_3d, tab);
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n' );
+	new RepeatXY( makeLine, item_3d, tab);
 
-	if ( isNull(mesh.parameters.parentGroup) == true )
-		ln( tab2 + 'parentGroup: null,\n');
+	if ( isNull( mesh.parameters.parentGroup ) == true )
+		ln( tab2 + 'parentGroup: null,\n' );
 	else
-		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n' );
 
-	ln( tab + '\n');
+	ln( tab + '\n' );
 
 	var tab2 = 	tab + '	';
 	var text = 	tab2 + 	
@@ -485,31 +485,31 @@ var SphereCode = function(makeLine, item_3d, tab)
 				'widthSegments:' 	+ p.widthSegments + ', ' + 
 				'heightSegments: ' 	+ p.heightSegments + ',\n' + 
 
-				tab2 + 'phiStart: ' 		+ r3(p.phiStart) + ',\n' + 
-				tab2 + 'phiLength: ' 		+ r3(p.phiLength) + ',\n' + 
-				tab2 + 'thetaStart: ' 		+ r3(p.thetaStart) + ',\n' + 
-				tab2 + 'thetaLength: ' 		+ r3(p.thetaLength) + ',\n' + 
+				tab2 + 'phiStart: ' 		+ r3( p.phiStart ) + ',\n' + 
+				tab2 + 'phiLength: ' 		+ r3( p.phiLength ) + ',\n' + 
+				tab2 + 'thetaStart: ' 		+ r3( p.thetaStart ) + ',\n' + 
+				tab2 + 'thetaLength: ' 		+ r3( p.thetaLength ) + ',\n' + 
 				'\n';
 				
-	ln(text);
-	positionCode.insert(mesh);
-	ln( tab + '};\n');
+	ln( text );
+	positionCode.insert( mesh );
+	ln( tab + '};\n' );
 
 	var materialType = mesh.material.type;
-	if (materialType == 'MeshPhongMaterial')
+	if ( materialType == 'MeshPhongMaterial' )
 	{
-		new MeshPhongMaterialCode(makeLine, mesh.material, tab);
+		new MeshPhongMaterialCode( makeLine, mesh.material, tab);
 	}
-	else if (materialType == 'MeshLambertMaterial')
+	else if ( materialType == 'MeshLambertMaterial' )
 	{
-		new MeshLambertMaterialCode(makeLine, mesh.material, tab);
+		new MeshLambertMaterialCode( makeLine, mesh.material, tab);
 	}
-	ln( tab + 'var sphere = new InsertSphere( siteApp, sceneObjects, parameters, paramMaterial );\n');
+	ln( tab + 'var sphere = new InsertSphere( siteApp, sceneObjects, parameters, paramMaterial );\n' );
 }
 
-var CustomSphereCode = function(makeLine, item_3d, tab)
+var CustomSphereCode = function( makeLine, item_3d, tab)
 {
-	var positionCode = new PositionCode(makeLine, tab + '	');
+	var positionCode = new PositionCode( makeLine, tab + '	' );
 	var mesh = item_3d.mesh;
 	var geometry = mesh.geometry;
 	//var p = mesh.parameters;
@@ -531,20 +531,20 @@ var CustomSphereCode = function(makeLine, item_3d, tab)
 		};
 	*/
 	var tab2 = tab + '	';
-	ln( tab + '\n');
-	ln( tab + 'var parameters =\n');
-	ln( tab + '{\n');
+	ln( tab + '\n' );
+	ln( tab + 'var parameters =\n' );
+	ln( tab + '{\n' );
 
 	//r3 is round function on three decimals
-	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n');
-	new RepeatXY(makeLine, item_3d, tab);
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n' );
+	new RepeatXY( makeLine, item_3d, tab);
 
-	if ( isNull(mesh.parameters.parentGroup) == true )
-		ln( tab2 + 'parentGroup: null,\n');
+	if ( isNull( mesh.parameters.parentGroup ) == true )
+		ln( tab2 + 'parentGroup: null,\n' );
 	else
-		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n');
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n' );
 
-	ln( tab + '\n');
+	ln( tab + '\n' );
 
 	var tab2 = 	tab + '	';
 	var text = 	tab2 + 	
@@ -552,37 +552,37 @@ var CustomSphereCode = function(makeLine, item_3d, tab)
 				'widthSegments:' 	+ p.widthSegments + ', ' + 
 				'heightSegments: ' 	+ p.heightSegments + ',\n' + 
 
-				tab2 + 'phiStart: ' 		+ r3(p.phiStart) + ',\n' + 
-				tab2 + 'phiLength: ' 		+ r3(p.phiLength) + ',\n' + 
-				tab2 + 'thetaStart: ' 		+ r3(p.thetaStart) + ',\n' + 
-				tab2 + 'thetaLength: ' 		+ r3(p.thetaLength) + ',\n';
+				tab2 + 'phiStart: ' 		+ r3( p.phiStart ) + ',\n' + 
+				tab2 + 'phiLength: ' 		+ r3( p.phiLength ) + ',\n' + 
+				tab2 + 'thetaStart: ' 		+ r3( p.thetaStart ) + ',\n' + 
+				tab2 + 'thetaLength: ' 		+ r3( p.thetaLength ) + ',\n';
 				
-	ln(text);
-	positionCode.insert(item_3d.group);
-	ln( tab + '};\n');
+	ln( text );
+	positionCode.insert( item_3d.group );
+	ln( tab + '};\n' );
 
 	var materialType = mesh.material.type;
-	if (materialType == 'MeshPhongMaterial')
+	if ( materialType == 'MeshPhongMaterial' )
 	{
-		new MeshPhongMaterialCode(makeLine, mesh.material, tab);
+		new MeshPhongMaterialCode( makeLine, mesh.material, tab);
 	}
-	else if (materialType == 'MeshLambertMaterial')
+	else if ( materialType == 'MeshLambertMaterial' )
 	{
-		new MeshLambertMaterialCode(makeLine, mesh.material, tab);
+		new MeshLambertMaterialCode( makeLine, mesh.material, tab);
 	}
-	ln( tab + 	'var sphere = new InsertCustomSphere( siteApp, sceneObjects, parameters, paramMaterial );\n');
+	ln( tab + 	'var sphere = new InsertCustomSphere( siteApp, sceneObjects, parameters, paramMaterial );\n' );
 }
 
-var MakeGroupsCode = function(makeDynamicCode, makeLine, tab)
+var MakeGroupsCode = function( makeDynamicCode, makeLine, tab)
 {
-	function insertGroup(group)
+	function insertGroup( group )
 	{
 		var tab2 = tab + '	';
 		var ln = makeLine.line_tab_0;
-		var positionCode = new PositionCode(makeLine, tab + '	');
+		var positionCode = new PositionCode( makeLine, tab + '	' );
 		var parentName;
 		var parentGroup = group.parameters.parent;
-		if (parentGroup == null)
+		if ( parentGroup == null )
 		{
 			parentName = 'null';
 		}
@@ -604,34 +604,34 @@ var MakeGroupsCode = function(makeDynamicCode, makeLine, tab)
 								customName : 'G1'
 							};
 		
-			var group = new InsertGroup( siteApp, sceneObjects, parameters);
+			var group = new InsertGroup( siteApp, sceneObjects, parameters );
 		*/
 
-		ln( tab + '\n');
-		ln( tab + 'var parameters =\n');
-		ln( tab + '{\n');
+		ln( tab + '\n' );
+		ln( tab + 'var parameters =\n' );
+		ln( tab + '{\n' );
 
-		positionCode.insert(group);
-		ln( tab + '\n');
+		positionCode.insert( group );
+		ln( tab + '\n' );
 
-		ln( tab2 + 'parent: ' + parentName + ',\n');
-		ln( tab2 + 'index: ' + group.parameters.index + ',\n');
-		ln( tab2 + 'codeName: "' + group.parameters.codeName + '",\n');
-		ln( tab2 + 'time: ' + group.parameters.time + ',\n');
-		ln( tab2 + 'auto_label: "' + group.parameters.auto_label + '",\n');
-		ln( tab2 + 'customName: "' + group.parameters.customName + '"\n');
-		ln( tab + '}\n');
+		ln( tab2 + 'parent: ' + parentName + ',\n' );
+		ln( tab2 + 'index: ' + group.parameters.index + ',\n' );
+		ln( tab2 + 'codeName: "' + group.parameters.codeName + '",\n' );
+		ln( tab2 + 'time: ' + group.parameters.time + ',\n' );
+		ln( tab2 + 'auto_label: "' + group.parameters.auto_label + '",\n' );
+		ln( tab2 + 'customName: "' + group.parameters.customName + '"\n' );
+		ln( tab + '}\n' );
 
 		var groupCodeName = group.parameters.codeName;
-		ln( tab + 'var ' + groupCodeName + ' = new InsertGroup( siteApp, sceneObjects, parameters);\n');
-		ln( tab + '\n');
+		ln( tab + 'var ' + groupCodeName + ' = new InsertGroup( siteApp, sceneObjects, parameters );\n' );
+		ln( tab + '\n' );
 
-		for (var i = 0; i < group_array.length; i++) 
+		for ( var i = 0; i < group_array.length; i++ ) 
 		{
 			var child_group = group_array[i];
 			if (child_group.parent.uuid == group.uuid)
 			{
-				insertGroup(child_group);
+				insertGroup(child_group );
 			}
 		};
 	}
@@ -639,24 +639,24 @@ var MakeGroupsCode = function(makeDynamicCode, makeLine, tab)
 	var item_3d_array = makeDynamicCode.item_3d_array;
 	var group_array = makeDynamicCode.group_array;
 	
-	for (var i = 0; i < group_array.length; i++) 
+	for ( var i = 0; i < group_array.length; i++ ) 
 	{
 		var group = group_array[i];
 		group.parameters.index = i;
 		group.parameters.codeName = 'group_' + i;
 	}
 
-	for (var i = 0; i < group_array.length; i++) 
+	for ( var i = 0; i < group_array.length; i++ ) 
 	{
 		var group = group_array[i];
-		if (group.parentIsScene() == true)
+		if ( group.parentIsScene() == true )
 		{
-			insertGroup(group);
+			insertGroup( group );
 		}
 	};
 }
 
-var MakeDynamicCode = function(sceneObjectsJSBuilder)
+var MakeDynamicCode = function( sceneObjectsJSBuilder )
 {
 	var _this = this;
 	this.sceneObjectsJSBuilder = sceneObjectsJSBuilder;
@@ -674,39 +674,39 @@ var MakeDynamicCode = function(sceneObjectsJSBuilder)
 	this.item_3d_array = item_3d_array;
 	this.group_array = group_array;
 
-	var positionCode = new PositionCode(this);
+	var positionCode = new PositionCode( this );
 	this.positionCode = positionCode;
 	
-	makeLine.line_tab_0('var LoadObjects = function( siteApp , sceneObjects )\n');
-	makeLine.line_tab_0('{\n');
+	makeLine.line_tab_0( 'var LoadObjects = function( siteApp , sceneObjects )\n' );
+	makeLine.line_tab_0( '{\n' );
 
-	new MakeGroupsCode(this, makeLine, '	');
+	new MakeGroupsCode( this, makeLine, '	' );
 
-	for (var i = 0; i < item_3d_array.length; i++)
+	for ( var i = 0; i < item_3d_array.length; i++ )
 	{
 		var item = item_3d_array[i];
 	
 		var type = item.geometry_name;
-		if (type == "TextGeometry")
+		if ( type == "TextGeometry" )
 		{
-			new Text3DCode(makeLine, item, '	');
+			new Text3DCode( makeLine, item, '	' );
 		}
-		else if (type == "BoxGeometry")
+		else if ( type == "BoxGeometry" )
 		{
-			new BoxCode(makeLine, item, '	');	
+			new BoxCode( makeLine, item, '	' );	
 		}
-		else if (type == "PlaneGeometry")
+		else if ( type == "PlaneGeometry" )
 		{
-			new PlainCode(makeLine, item, '	');
+			new PlainCode( makeLine, item, '	' );
 		}
-		else if (type == "SphereGeometry")
+		else if ( type == "SphereGeometry" )
 		{
-			new SphereCode(makeLine, item, '	');	
+			new SphereCode( makeLine, item, '	' );	
 		}
-		else if (type == "CustomSphere")
+		else if ( type == "CustomSphere" )
 		{
-			new CustomSphereCode(makeLine, item, '	');	
+			new CustomSphereCode( makeLine, item, '	' );	
 		}
 	}
-	makeLine.line_tab_0('\n}');
+	makeLine.line_tab_0( '\n }' );
 }

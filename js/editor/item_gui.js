@@ -1,4 +1,4 @@
-var PlainGUI = function(item_3d_gui)
+var PlainGUI = function( item_3d_gui )
 {
 	/*
 		width — Width along the X axis.
@@ -28,16 +28,16 @@ var PlainGUI = function(item_3d_gui)
 			parameters.heightSegments = start_heightSegments;
 			
 			update();
-			updateDisplay(item_3d_gui.gui);
+			updateDisplay( item_3d_gui.gui );
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			var message = "Error, please click reset button again. Err message: \n" + err.message;
-    		alert(message);
+    		alert( message );
 		}	
 	}
 
-	parameters["reset"] = reset;
+	parameters[ "reset" ] = reset;
 
 	function update()
 	{
@@ -54,10 +54,10 @@ var PlainGUI = function(item_3d_gui)
 			item_3d_gui.mesh.geometry = geometry;
 			siteApp.render();
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			var message = "Error, please click reset button. Err message: \n" + err.message;
-    		alert(message);
+    		alert( message );
 		}
 	}
 
@@ -78,7 +78,7 @@ var PlainGUI = function(item_3d_gui)
 	topFolder.add( parameters, 'reset' ).name( 'reset' );
 };
 
-var BoxGUI = function(item_3d_gui)
+var BoxGUI = function( item_3d_gui )
 {
 	/*
 		width — Width of the sides on the X axis.
@@ -115,16 +115,16 @@ var BoxGUI = function(item_3d_gui)
 			parameters.depthSegments = start_depthSegments;
 			
 			update();
-			updateDisplay(item_3d_gui.gui);
+			updateDisplay( item_3d_gui.gui );
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			var message = "Error, please click reset button. Err message: " + err.message;
-    		alert(message);
+    		alert( message );
 		}	
 	}
 
-	parameters["reset"] = reset;
+	parameters[ "reset" ] = reset;
 
 	function update()
 	{
@@ -142,10 +142,10 @@ var BoxGUI = function(item_3d_gui)
 			item_3d_gui.mesh.geometry = geometry;
 			siteApp.render();
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			var message = "Error, please click reset button. Err message: \n" + err.message;
-    		alert(message);
+    		alert( message );
 		}
 	}
 
@@ -168,7 +168,7 @@ var BoxGUI = function(item_3d_gui)
 	topFolder.add( parameters, 'reset' ).name( 'reset' );
 };
 
-var SphereCustomGUI = function(item_3d_gui)
+var SphereCustomGUI = function( item_3d_gui )
 {
 	/*
 		radius — sphere radius. Default is 50.
@@ -222,15 +222,15 @@ var SphereCustomGUI = function(item_3d_gui)
 			parameters.thetaLength = startVals.thetaLength;
 
 			update();
-			updateDisplay(item_3d_gui.gui);
+			updateDisplay( item_3d_gui.gui );
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			var message = "Error, please click reset button. Err message: " + err.message;
-    		alert(message);
+    		alert( message );
 		}	
 	}
-	parameters["reset"] = reset;
+	parameters[ "reset" ] = reset;
 
 	var twoPi 			= Math.PI * 2;
 	var radius 			= topFolder.add( parameters, 'radius', 1, 100 );
@@ -284,7 +284,7 @@ var SphereCustomGUI = function(item_3d_gui)
 	topFolder.add( parameters, 'reset' ).name( "Reset" );
 };
 
-var SphereGUI = function(item_3d_gui)
+var SphereGUI = function( item_3d_gui )
 {
 	/*
 		radius — sphere radius. Default is 50.
@@ -337,15 +337,15 @@ var SphereGUI = function(item_3d_gui)
 			parameters.thetaLength 		= startVals.thetaLength;
 
 			update();
-			updateDisplay(item_3d_gui.gui);
+			updateDisplay( item_3d_gui.gui );
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			var message = "Error, please click reset button. Err message: " + err.message;
-    		alert(message);
+    		alert( message );
 		}	
 	}
-	parameters["reset"] = reset;
+	parameters[ "reset" ] = reset;
 
 	var twoPi 			= Math.PI * 2;
 	var radius			= topFolder.add( parameters, 'radius', 1, 100 );
@@ -383,7 +383,7 @@ var SphereGUI = function(item_3d_gui)
 	topFolder.add( parameters, 'reset' ).name( "Reset" );
 };
 
-var Text3DGUI = function(item_3d_gui)
+var Text3DGUI = function( item_3d_gui )
 {
 	var topFolder = item_3d_gui.topFolder.addFolder( "Text Geometry" );	
 
@@ -427,18 +427,18 @@ var Text3DGUI = function(item_3d_gui)
 			geometry.center();
 			item_3d_gui.mesh.geometry = geometry;
 			siteApp.render();
-			updateDisplay(item_3d_gui.gui);
+			updateDisplay( item_3d_gui.gui );
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			var message = "Error, please click reset button. Err message: " + err.message;
-    		alert(message);
+    		alert( message );
 		}	
 	}
 
-	parameters["reset"] = reset;
+	parameters[ "reset" ] = reset;
 
-	function update(ctrlName)
+	function update(ctrlName )
 	{
 		try 
 		{
@@ -448,7 +448,7 @@ var Text3DGUI = function(item_3d_gui)
 			item_3d_gui.mesh.geometry = geometry;
 			siteApp.render();
 		}
-		catch(err) 
+		catch( err ) 
 		{
 			try
 			{
@@ -467,12 +467,12 @@ var Text3DGUI = function(item_3d_gui)
 					parameters.weight = start_weight;
 					reset();
 				}
-				alert(err.message);
+				alert( err.message );
 			}
-			catch(err) 
+			catch( err ) 
 			{
 				var message = "Error, please click reset button. Err message: " + err.message;
-	    		alert(message);
+	    		alert( message );
 			}	
 		}
 	}
@@ -481,9 +481,9 @@ var Text3DGUI = function(item_3d_gui)
 	var size 			= topFolder.add( parameters, 'size' );
 	var height 			= topFolder.add( parameters, 'height' );
 	var curveSegments 	= topFolder.add( parameters, 'curveSegments' );
-	var weight 			= topFolder.add( parameters, 'weight', [ "bold", "normal"]  ).name( 'weight' );
+	var weight 			= topFolder.add( parameters, 'weight', [ "bold", "normal" ]  ).name( 'weight' );
 	//var font = topFolder.add( parameters, 'font' );
-	var font 			= topFolder.add( parameters, 'font', [ "gentilis", "helvetiker", "optimer"] ).name( 'font' );
+	var font 			= topFolder.add( parameters, 'font', [ "gentilis", "helvetiker", "optimer" ] ).name( 'font' );
 	var bevelEnabled 	= topFolder.add( parameters, 'bevelEnabled' );
 	var bevelThickness 	= topFolder.add( parameters, 'bevelThickness' );
 	var bevelSize 		= topFolder.add( parameters, 'bevelSize' );
@@ -501,7 +501,7 @@ var Text3DGUI = function(item_3d_gui)
 	topFolder.add( parameters, 'reset' ).name( "Reset" );
 };
 
-var PositionGUI = function(editorGUI, gui, mesh, parentFolder, name, absolutePosition)
+var PositionGUI = function( editorGUI, gui, mesh, parentFolder, name, absolutePosition )
 {
 	var siteApp = editorGUI.siteApp;
 
@@ -511,7 +511,7 @@ var PositionGUI = function(editorGUI, gui, mesh, parentFolder, name, absolutePos
 
 	function getPosition()
 	{
-		if (isNull(absolutePosition) == true)
+		if ( isNull( absolutePosition ) == true )
 		{
 			return mesh.position;
 		}
@@ -521,7 +521,7 @@ var PositionGUI = function(editorGUI, gui, mesh, parentFolder, name, absolutePos
 		}
 	}
 
-	var parameters = {x: start_x, y: start_y, z: start_z, reset: function() { reset() }};
+	var parameters = {x: start_x, y: start_y, z: start_z, reset: function() { reset() } };
 
 	function reset()
 	{
@@ -533,26 +533,26 @@ var PositionGUI = function(editorGUI, gui, mesh, parentFolder, name, absolutePos
 		parameters.y = start_y;
 		parameters.z = start_z;
 
-		updateDisplay(gui);
+		updateDisplay( gui );
 
-		siteApp.look(getPosition());
+		siteApp.look( getPosition() );
 	}
 
-	var folderPosition = parentFolder.addFolder(name);
+	var folderPosition = parentFolder.addFolder( name );
 	
 	var positionX = folderPosition.add( parameters, 'x' ).min( editorGUI.x_min ).max( editorGUI.x_max ).step( 5 );
 	var positionY = folderPosition.add( parameters, 'y' ).min( editorGUI.x_min ).max( editorGUI.x_max ).step( 5 );
 	var positionZ = folderPosition.add( parameters, 'z' ).min( editorGUI.x_min ).max( editorGUI.x_max ).step( 5 );
 
-	positionX.onChange(function( value )	{ mesh.position.x = value; siteApp.look(getPosition()); });
-	positionY.onChange(function( value ) 	{ mesh.position.y = value; siteApp.look(getPosition()); });
-	positionZ.onChange(function( value )	{ mesh.position.z = value; siteApp.look(getPosition()); });
+	positionX.onChange( function( value )	{ mesh.position.x = value; siteApp.look( getPosition() ); } );
+	positionY.onChange( function( value ) 	{ mesh.position.y = value; siteApp.look( getPosition() ); } );
+	positionZ.onChange( function( value )	{ mesh.position.z = value; siteApp.look( getPosition() ); } );
 
 	var resetTitle = "To " + start_x.toString() + ", " + start_y.toString() + ", " + start_z.toString();
-	folderPosition.add( parameters, 'reset' ).name(resetTitle);
+	folderPosition.add( parameters, 'reset' ).name(resetTitle );
 };
 
-var RotationGui = function(editorGUI, gui, item_3d, topFolder)
+var RotationGui = function( editorGUI, gui, item_3d, topFolder )
 {
 	var mesh = item_3d.mesh;
 	var start_x = mesh.rotation.x;
@@ -560,9 +560,9 @@ var RotationGui = function(editorGUI, gui, item_3d, topFolder)
 	var start_z = mesh.rotation.z;
 
 	var parameters = {
-						rx: toDeg(mesh.rotation.x), 
-						ry: toDeg(mesh.rotation.y), 
-						rz: toDeg(mesh.rotation.z),
+						rx: toDeg( mesh.rotation.x), 
+						ry: toDeg( mesh.rotation.y), 
+						rz: toDeg( mesh.rotation.z ),
 						reset: function() { reset() }
 					};
 
@@ -572,13 +572,13 @@ var RotationGui = function(editorGUI, gui, item_3d, topFolder)
 		mesh.rotation.y = start_y;
 		mesh.rotation.z = start_z;
 
-		parameters.rx = toDeg(start_x);
-		parameters.ry = toDeg(start_y);
-		parameters.rz = toDeg(start_z);
+		parameters.rx = toDeg( start_x);
+		parameters.ry = toDeg( start_y);
+		parameters.rz = toDeg( start_z );
 
-		updateDisplay(gui);
+		updateDisplay( gui );
 
-		siteApp.lookAt(item_3d.absolutePosition());
+		siteApp.lookAt( item_3d.absolutePosition() );
 	}
 
 	var folderRotation = topFolder.addFolder( 'Rotation' );
@@ -586,15 +586,15 @@ var RotationGui = function(editorGUI, gui, item_3d, topFolder)
 	var rotationY = folderRotation.add( parameters, 'ry' ).min( -180 ).max( 180 ).step( 5 );
 	var rotationZ = folderRotation.add( parameters, 'rz' ).min( -180 ).max( 180 ).step( 5 );
 	
-	rotationX.onChange(function( value ) { mesh.rotation.x = toRad( value ); siteApp.render(); });
-	rotationY.onChange(function( value ) { mesh.rotation.y = toRad( value ); siteApp.render(); });
-	rotationZ.onChange(function( value ) { mesh.rotation.z = toRad( value ); siteApp.render(); });
+	rotationX.onChange( function( value ) { mesh.rotation.x = toRad( value ); siteApp.render(); } );
+	rotationY.onChange( function( value ) { mesh.rotation.y = toRad( value ); siteApp.render(); } );
+	rotationZ.onChange( function( value ) { mesh.rotation.z = toRad( value ); siteApp.render(); } );
 
-	var resetTitle = "To " + toDeg(start_x) + ", " + toDeg(start_y) + ", " + toDeg(start_z);
-	folderRotation.add( parameters, 'reset' ).name(resetTitle);
+	var resetTitle = "To " + toDeg( start_x) + ", " + toDeg( start_y) + ", " + toDeg( start_z );
+	folderRotation.add( parameters, 'reset' ).name(resetTitle );
 };
 
-var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
+var ScaleGui = function( editorGUI, gui, item_3d, topFolder )
 {
 	var mesh = item_3d.mesh;
 	var start_x = mesh.scale.x;
@@ -619,7 +619,7 @@ var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
 		mesh.scale.y = parameters.sy;
 		mesh.scale.z = parameters.sz;
 		
-		updateDisplay(gui);
+		updateDisplay( gui );
 		siteApp.render();
 	}
 
@@ -631,7 +631,7 @@ var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
 	var scaleY = folderScale.add( parameters, 'sy' ).min( 0.1 ).max( 5 ).step( 0.05 );
 	var scaleZ = folderScale.add( parameters, 'sz' ).min( 0.1 ).max( 5 ).step( 0.05 );
 	
-	function change(oldValue, value)
+	function change( oldValue, value )
 	{
 		var diff = value/oldValue;
 
@@ -648,48 +648,48 @@ var ScaleGui = function(editorGUI, gui, item_3d, topFolder)
 	}
 	scaleX.onChange(	function( value )	
 						{  
-							if (prop.proportional == true)
-								change(mesh.scale.x, value); 	
+							if ( prop.proportional == true )
+								change( mesh.scale.x, value ); 	
 							else
 							{
 								mesh.scale.x = value; 
 								siteApp.render();									
 							}
-							updateDisplay(gui);
+							updateDisplay( gui );
 						} 
 					);
 
 	scaleY.onChange(	function( value )	
 						{  
-							if (prop.proportional == true)
-								change(mesh.scale.y, value); 	
+							if ( prop.proportional == true )
+								change( mesh.scale.y, value ); 	
 							else
 							{
 								mesh.scale.y = value; 
 								siteApp.render();									
 							}
-							updateDisplay(gui);
+							updateDisplay( gui );
 						} 
 					);
 
 	scaleZ.onChange(	function( value )	
 						{  
-							if (prop.proportional == true)
-								change(mesh.scale.z, value); 	
+							if ( prop.proportional == true )
+								change( mesh.scale.z, value ); 	
 							else
 							{
 								mesh.scale.z = value; 
 								siteApp.render();									
 							}
-							updateDisplay(gui);
+							updateDisplay( gui );
 						} 
 					);
 
 	var resetTitle = "To " + start_x + ", " + start_y + ", " + start_z;
-	folderScale.add( parameters, 'reset' ).name(resetTitle);
+	folderScale.add( parameters, 'reset' ).name(resetTitle );
 };
 
-var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
+var GroupGUI = function( editorGUI, gui, item_3d, topFolder )
 {
 	var groupFolder;
 
@@ -703,60 +703,60 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 
 	var buttonOpenGroup;
 
-	function changeGroup(yesNo)
+	function changeGroup(yesNo )
 	{
 		if (yesNo == 0 ) return;
-		for (var i = childs.length - 1; i >= 0; i--) 
+		for ( var i = childs.length - 1; i >= 0; i-- ) 
 		{
 			groupFolder.remove(childs[i]);
 		};
-		groupFolder.remove(buttonOpenGroup);
+		groupFolder.remove(buttonOpenGroup );
 		childs = [];
 			
-		if (oldGroupIsScene)
+		if ( oldGroupIsScene )
 		{
-			if (item_3d.group == null)
+			if ( item_3d.group == null )
 			{
-				editorGUI.siteApp.scene.remove(item_3d.mesh);
+				editorGUI.siteApp.scene.remove( item_3d.mesh );
 			}
 			else
 			{
-				editorGUI.siteApp.scene.remove(item_3d.group);	
+				editorGUI.siteApp.scene.remove( item_3d.group );	
 			}
 		}
 		else
 		{
-			if (item_3d.group == null)
+			if ( item_3d.group == null )
 			{
-				oldGroup.remove(item_3d.mesh);
+				oldGroup.remove( item_3d.mesh );
 			}
 			else
 			{
-				oldGroup.remove(item_3d.group);
+				oldGroup.remove( item_3d.group );
 			}
 		}
 
-		if (newGroupIsScene)
+		if ( newGroupIsScene )
 		{
-			if (item_3d.group == null)
+			if ( item_3d.group == null )
 			{
-				editorGUI.siteApp.scene.add(item_3d.mesh);
+				editorGUI.siteApp.scene.add( item_3d.mesh );
 			}
 			else
 			{
-				editorGUI.siteApp.scene.add(item_3d.group);
+				editorGUI.siteApp.scene.add( item_3d.group );
 			}
 			item_3d.parentGroup = null;
 		}
 		else
 		{
-			if (item_3d.group == null)
+			if ( item_3d.group == null )
 			{
-				newGroup.add(item_3d.mesh);	
+				newGroup.add( item_3d.mesh );	
 			}
 			else
 			{
-				newGroup.add(item_3d.group);	
+				newGroup.add( item_3d.group );	
 			}
 			item_3d.parentGroup = newGroup;
 		}
@@ -765,25 +765,25 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 		editorGUI.leftMenu.leftMenuSelect.refresh();
 	}
 
-	function getName(group)
+	function getName( group )
 	{
-		if (group.type == 'Scene' ) return 'Scene';
+		if ( group.type == 'Scene' ) return 'Scene';
 		return group.parameters.auto_label;
 	}
 
-	function confirmNewGroup(selectedGroup)
+	function confirmNewGroup( selectedGroup )
 	{
 		newGroup = selectedGroup;
-		if (newGroup.type == 'Scene' ) 
+		if ( newGroup.type == 'Scene' ) 
 			newGroupIsScene = true;
 		else
 			newGroupIsScene = false;
 
 		var text = 'Do you want to change group\n';
-		text += 'from: ' + getName(oldGroup) + '\n';
-		text += 'to: ' + getName(newGroup) + '\n';
+		text += 'from: ' + getName( oldGroup ) + '\n';
+		text += 'to: ' + getName( newGroup ) + '\n';
 
-		new DialogYesNo(text, "Change group", changeGroup);	
+		new DialogYesNo( text, "Change group", changeGroup );	
 	}
 
 	groupFolder = topFolder.addFolder( "Group" );
@@ -792,83 +792,83 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 		function insertScene()
 		{
 			var isSelected = false;
-			if (item_3d.parentGroup == null)
+			if ( item_3d.parentGroup == null )
 			{
 				isSelected = true;
 				oldGroup = editorGUI.siteApp.scene;
 				oldGroupIsScene = true;
 			}
 			var selected = {selected: isSelected};
-			if (isSelected == true)
+			if ( isSelected == true )
 			{
 				function open()
 				{
 					new Dialog( "Scene is root group.", "Scene is parent" );
 				}
-				buttonOpenGroup = groupFolder.add({open: open}, "open" ).name( "Scene is parent" );
+				buttonOpenGroup = groupFolder.add( { open: open }, "open" ).name( "Scene is parent" );
 			}
 			else
 			{
-				var groupChecked = groupFolder.add(selected, "selected" ).name( 'Scene' );
-				childs.push(groupChecked);
+				var groupChecked = groupFolder.add( selected, "selected" ).name( 'Scene' );
+				childs.push( groupChecked);
 				groupChecked.onChange(   
 										function( value ) 
 										{  
-											if (value == false)
+											if ( value == false )
 											{
 												selected.selected = true;
 												var text = "You can't deselect group.\n";
 												text += "You can select new one, then, this group will be deselected.";
-												new Dialog(text, "Info" );
+												new Dialog( text, "Info" );
 											}
 											else
 											{
 												selected.selected = false;
-												confirmNewGroup(editorGUI.siteApp.scene);
+												confirmNewGroup( editorGUI.siteApp.scene );
 											}
 										}   
 									);
 			}
 		}
 
-		function insertGroup(group)
+		function insertGroup( group )
 		{
 			var isSelected = false;
-			if (item_3d.parentGroup !== null)
+			if ( item_3d.parentGroup !== null )
 			{
-				if (group.uuid == item_3d.parentGroup.uuid)
+				if ( group.uuid == item_3d.parentGroup.uuid)
 				{
 					isSelected = true;
 					oldGroup = group;
 				}
 			}
 			var selected = {selected: isSelected};
-			if (isSelected == true)
+			if ( isSelected == true )
 			{
 				function open()
 				{
-					editorGUI.makeRightGUI_for_group(group);
+					editorGUI.makeRightGUI_for_group( group );
 				}
-				buttonOpenGroup = groupFolder.add({open: open}, "open" ).name( "Open " + group.parameters.auto_label);
+				buttonOpenGroup = groupFolder.add( { open: open }, "open" ).name( "Open " + group.parameters.auto_label );
 			}
 			else
 			{
-				var groupChecked = groupFolder.add(selected, "selected" ).name(group.parameters.auto_label);
-				childs.push(groupChecked);
+				var groupChecked = groupFolder.add( selected, "selected" ).name( group.parameters.auto_label );
+				childs.push( groupChecked);
 				groupChecked.onChange(   
 										function( value ) 
 										{  
-											if (value == false)
+											if ( value == false )
 											{
 												selected.selected = true;
 												var text = "You can't deselect group.\n";
 												text += "You can select new one, then, this group will be deselected.";
-												new Dialog(text, "Info" );
+												new Dialog( text, "Info" );
 											}
 											else
 											{
 												selected.selected = false;
-												confirmNewGroup(group);
+												confirmNewGroup( group );
 											}
 										}   
 									);
@@ -876,22 +876,22 @@ var GroupGUI = function(editorGUI, gui, item_3d, topFolder)
 		}
 		insertScene();	
 		var group_array = editorGUI.siteApp.sceneObjects.group_array;
-		for (var i = 0; i < group_array.length; i++) 
+		for ( var i = 0; i < group_array.length; i++ ) 
 		{
 			var group = group_array[i];
-			insertGroup(group);
+			insertGroup( group );
 		};
 	}
 	insert();
 };
 
-var Item_3d_GUI = function(editorGUI, item_3d)
+var Item_3d_GUI = function( editorGUI, item_3d)
 { 
 	this.editorGUI = editorGUI;
 	this.item_3d = item_3d;
 
 	var mesh;
-	if (item_3d.group !== null)
+	if ( item_3d.group !== null )
 	{
 		mesh = item_3d.group;
 	}
@@ -909,18 +909,18 @@ var Item_3d_GUI = function(editorGUI, item_3d)
 	var topFolder;
 	var positionGUI;
 	//Not inserted
-	var gui = new dat.GUI({ autoPlace: false });
-	gui.domElement.style["max-height"] = (window.innerHeight - 10 ) + 'px';
-	gui.domElement.style["overflow-y"] = "scroll";
+	var gui = new dat.GUI( { autoPlace: false } );
+	gui.domElement.style[ "max-height" ] = (window.innerHeight - 10 ) + 'px';
+	gui.domElement.style[ "overflow-y" ] = "scroll";
 
 	this.gui = gui;
-	editorGUI.right_top_div.appendChild(gui.domElement);
+	editorGUI.right_top_div.appendChild( gui.domElement );
 
-	editorGUI.siteApp.lookAt(item_3d.absolutePosition());
+	editorGUI.siteApp.lookAt( item_3d.absolutePosition() );
 	
 	function insertTopFolder()
 	{
-		topFolder = gui.addFolder(auto_label);	
+		topFolder = gui.addFolder( auto_label );	
 		item_3d_gui.topFolder = topFolder;
 		topFolder.open();
 	}
@@ -933,48 +933,48 @@ var Item_3d_GUI = function(editorGUI, item_3d)
 
 	insertTopFolder();
 	
-	var groupGUI = new GroupGUI(editorGUI, gui, item_3d, topFolder);
+	var groupGUI = new GroupGUI( editorGUI, gui, item_3d, topFolder );
 
-	var positionGUI = new PositionGUI(editorGUI, gui, mesh, topFolder, "Position", item_3d.absolutePosition);
-	new RotationGui(editorGUI, gui, item_3d, topFolder);
-	new ScaleGui(editorGUI, gui, item_3d, topFolder);
+	var positionGUI = new PositionGUI( editorGUI, gui, mesh, topFolder, "Position", item_3d.absolutePosition );
+	new RotationGui( editorGUI, gui, item_3d, topFolder );
+	new ScaleGui( editorGUI, gui, item_3d, topFolder );
 
 	var type = item_3d.geometry_name;
-	if (type == "TextGeometry" )
+	if ( type == "TextGeometry" )
 	{
-		new Text3DGUI(item_3d_gui);
+		new Text3DGUI( item_3d_gui );
 	}
-	else if (type == "BoxGeometry" )
+	else if ( type == "BoxGeometry" )
 	{
-		new BoxGUI(item_3d_gui);
+		new BoxGUI( item_3d_gui );
 	}
-	else if (type == "PlaneGeometry" )
+	else if ( type == "PlaneGeometry" )
 	{
-		new PlainGUI(item_3d_gui);
+		new PlainGUI( item_3d_gui );
 	}
-	else if (type == "SphereGeometry" )
+	else if ( type == "SphereGeometry" )
 	{
-		new SphereGUI(item_3d_gui);
+		new SphereGUI( item_3d_gui );
 	}
-	else if (type == "CustomSphere" )
+	else if ( type == "CustomSphere" )
 	{
-		new SphereCustomGUI(item_3d_gui);
+		new SphereCustomGUI( item_3d_gui );
 	}
 	
-	this.material = new ObjectMaterijal(item_3d_gui);
+	this.material = new ObjectMaterijal( item_3d_gui );
 
-	function select(){ editorGUI.siteApp.lookAt(item_3d.absolutePosition()); }
+	function select() { editorGUI.siteApp.lookAt( item_3d.absolutePosition() ); }
 	topFolder.add( {select: select}, 'select' ).name( 'Select' );
 
 	function remove()
 	{ 
-		new RemoveObject3d(editorGUI, item_3d);
+		new RemoveObject3d( editorGUI, item_3d);
 	}
 	topFolder.add( {remove: remove}, 'remove' ).name( 'Remove' );
 
 	function code()
 	{ 
-		new Snippet(editorGUI, item_3d);
+		new Snippet( editorGUI, item_3d);
 	}
 	topFolder.add( {code: code}, 'code' ).name( 'JS code' );
 
@@ -982,11 +982,11 @@ var Item_3d_GUI = function(editorGUI, item_3d)
 	// { 
 	// 	var name = "null";
 	// 	var map = item_3d_gui.mesh.material.map;
-	// 	if (isNull(map) == false)
+	// 	if ( isNull( map ) == false )
 	// 	{
 	// 		name = map.name;
 	// 	}
-	// 	alert(name);
+	// 	alert( name );
 	// }
 	// topFolder.add( {material_name: material_name}, 'material_name' ).name( 'Material name' );
 };

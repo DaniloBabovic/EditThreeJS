@@ -2,25 +2,28 @@
 var siteApp;
 var url_params = {};
 
-if (location.search) {
-    var parts = location.search.substring(1).split('&');
+if ( location.search ) 
+{
+    var parts = location.search.substring( 1 ).split( '&' );
 
-    for (var i = 0; i < parts.length; i++) {
-        var nv = parts[i].split('=');
-        if (!nv[0]) continue;
-        url_params[nv[0]] = nv[1] || true;
+    for ( var i = 0; i < parts.length; i++ ) 
+    {
+        var nv = parts[ i ].split( '=' );
+        if ( !nv[ 0 ] ) continue;
+        url_params[ nv [ 0 ] ] = nv[ 1 ] || true;
     }
 }
 
 var xhttp = new XMLHttpRequest();
+
 xhttp.onreadystatechange = function() 
 {
-    if (xhttp.readyState == 4 && xhttp.status == 200) 
+    if (xhttp.readyState == 4 && xhttp.status == 200 ) 
     {
-       //alert("OK");
+       //alert( "OK" );
     }
 };
-xhttp.open("GET", "/analitic", true);
+xhttp.open( "GET", "/analitic", true );
 xhttp.send();
 
 
@@ -81,12 +84,12 @@ var SiteApp = function()
 							controls.update();
 						}
 					)
-		//.onComplete(onComplete)
-  		animateTW.start(1100);
+		//.onComplete( onComplete )
+  		animateTW.start( 1100 );
 	}
 	this.lookAtReset = lookAtReset;
 
-	function look(position)
+	function look( position )
 	{
 		controlsTarget.position.x = position.x;
 		controlsTarget.position.y = position.y;
@@ -101,7 +104,7 @@ var SiteApp = function()
 	}
 	this.look = look;
 
-	function lookAt(position)
+	function lookAt( position )
 	{
 		var tw = new TWEEN.Tween( controlsTarget.position )
   		.to( { x: position.x, y: position.y, z: position.z }, 1000 )
@@ -120,29 +123,33 @@ var SiteApp = function()
 							controls.update();
 						}
 					)
-		//.onComplete(onComplete)
-  		animateTW.start(1100);
+		//.onComplete( onComplete )
+  		animateTW.start( 1100 );
 	}
 	this.lookAt = lookAt;
 
 	function insertOrbitControls()
 	{
-		controlsTarget = new THREE.Object3D();
+		controlsTarget = new THREE.Object3D( );
 		_this.controlsTarget = controlsTarget;
 		controlsTarget.position.y = 50;
-		scene.add(controlsTarget);
+		scene.add( controlsTarget );
 
 		var axisHelper = new THREE.AxisHelper( 5 );
 		controlsTarget.add( axisHelper );
 
 
-		controls = new THREE.OrbitControls(camera, rendererGL.domElement);
+		controls = new THREE.OrbitControls( camera, rendererGL.domElement );
 		controls.addEventListener( 'change', render );
 		controls.dampingFactor = 0.25;
 		controls.enableZoom = true;
 		controls.rotateSpeed = 0.4;
-		controls.target.set(controlsTarget.position.x, controlsTarget.position.y, controlsTarget.position.z);
-		controls.update();
+		controls.target.set(
+								controlsTarget.position.x, 
+								controlsTarget.position.y, 
+								controlsTarget.position.z
+							);
+		controls.update( );
 	}
 
 
@@ -150,20 +157,20 @@ var SiteApp = function()
 	{
 		// renderer
 	    var with_alias = url_params.with_alias;
-	    if ((with_alias == 'true') || (with_alias == true))
+	    if ( ( with_alias == 'true' ) || ( with_alias == true ) )
 	    {
-	    	rendererGL = new THREE.WebGLRenderer({ antialias: true });	
+	    	rendererGL = new THREE.WebGLRenderer( { antialias: true } );	
 	    }
 	    else
 	    {
-	    	rendererGL = new THREE.WebGLRenderer({ antialias: false });
+	    	rendererGL = new THREE.WebGLRenderer( { antialias: false } );
 	    }
 	    rendererGL.setSize( window.innerWidth, window.innerHeight );
 	    document.body.appendChild( rendererGL.domElement );
 	    _this.rendererGL = rendererGL;
 	}
 
-	function init()
+	function init ()
 	{
 	    insertRenderer();
 
@@ -185,18 +192,23 @@ var SiteApp = function()
 		_this.camera = camera;
 
 	
-		lights = new Lights(_this);
+		lights = new Lights( _this );
 		_this.lights = lights;
 
-		sky = new Sky(_this);
-		var sceneObjects = new SceneObjects(_this);
+		sky = new Sky( _this );
+		var sceneObjects = new SceneObjects( _this );
 		_this.sceneObjects = sceneObjects;
 
 		insertStats();
 
-		var bounds = {x_min: -500, x_max: 500, y_min: -500, y_max: 500, z_min: -500, z_max: -500};
-		insertOrbitControls();
-		editorGUI = new EditorGUI(_this, bounds);
+		var bounds = 	{
+							x_min: -500, x_max: 500, 
+							y_min: -500, y_max: 500, 
+							z_min: -500, z_max: -500
+						};
+
+		insertOrbitControls( );
+		editorGUI = new EditorGUI( _this, bounds );
 	}
 
 	function onWindowResize()
@@ -205,7 +217,7 @@ var SiteApp = function()
 		camera.updateProjectionMatrix();
 
 		rendererGL.setSize( window.innerWidth, window.innerHeight );
-		if (haveCss3dRenderer)
+		if (haveCss3dRenderer )
 		{
 			renderer.setSize( window.innerWidth, window.innerHeight );
 		}
@@ -216,7 +228,7 @@ var SiteApp = function()
 	{
 		_this.sceneObjects.render(); //Mirror
 
-		if (statsON)
+		if ( statsON)
 		{
 			stats.update();	
 		}
@@ -233,8 +245,8 @@ var SiteApp = function()
 
 	render();
 	
-	var animateTW = new AnimateTW(this);
-	animateTW.start(5000);
+	var animateTW = new AnimateTW( this );
+	animateTW.start( 5000 );
 	this.animateTW = animateTW;
 
 }

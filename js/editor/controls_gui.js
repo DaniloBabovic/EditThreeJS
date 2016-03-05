@@ -1,4 +1,4 @@
-var EditorGUI = function(siteApp, bounds)
+var EditorGUI = function( siteApp, bounds )
 {
 	var _this = this;
 	this.siteApp = siteApp;
@@ -13,19 +13,19 @@ var EditorGUI = function(siteApp, bounds)
 	this.z_max = bounds.z_max;
 
 	//Elements
-	var left_top_div = document.getElementById('left_top_div');
+	var left_top_div = document.getElementById( 'left_top_div' );
 	this.left_top_div = left_top_div;
 
-	var active_div_parent = document.getElementById('active_div_parent');
+	var active_div_parent = document.getElementById( 'active_div_parent' );
 	this.active_div_parent = active_div_parent;
 
-	var active_div = document.getElementById('active_div');
+	var active_div = document.getElementById( 'active_div' );
 	this.active_div = active_div;
 
-	//var active_div_close = document.getElementById('active_div_close');
+	//var active_div_close = document.getElementById( 'active_div_close' );
 
 
-	var right_top_div = document.getElementById('right_top_div');
+	var right_top_div = document.getElementById( 'right_top_div' );
 
 	this.right_top_div = right_top_div;
 
@@ -46,11 +46,11 @@ var EditorGUI = function(siteApp, bounds)
 			{
 				
 			}
-			//right_top_div.style["right"] = "-150px";	
+			//right_top_div.style[ "right" ] = "-150px";	
 			var tw = new TWEEN.Tween( {right: -150} )
 	  		.to( { right: 10}, 700 )
 			.easing( TWEEN.Easing.Exponential.InOut )
-			.onComplete(onComplete)
+			.onComplete( onComplete )
 			.start();
 			tw.onUpdate	(
 							function() 
@@ -58,39 +58,39 @@ var EditorGUI = function(siteApp, bounds)
 								right_top_div.style.right = this.right + 'px';
 							}
 						)
-	  		siteApp.animateTW.start(1100);
+	  		siteApp.animateTW.start( 1100 );
 		}
 
-		if (active_object_dom_element === null) return;
+		if ( active_object_dom_element === null ) return;
 		active_div_close.onclick = null;
 
-		//right_top_div.style["right"] = "10px";
-		active_div.removeChild(active_object_dom_element);
+		//right_top_div.style[ "right" ] = "10px";
+		active_div.removeChild( active_object_dom_element );
 		active_object_dom_element = null;
-		active_div_parent.style["display"] = 'none';
-		if (onCloseActiveGUI !== null)
+		active_div_parent.style[ "display" ] = 'none';
+		if ( onCloseActiveGUI !== null )
 		{
 			onCloseActiveGUI()	;
 			onCloseActiveGUI = null;
 		}
 		animate();
 	}
-	_this.closeActiveControl = closeActiveControl;
+	this.closeActiveControl = closeActiveControl;
 
-	function insertActiveControl(object_dom_element, onClose) 
+	function insertActiveControl( object_dom_element, onClose ) 
 	{
 		function animate()
 		{
 			function onComplete()
 			{
-				active_div.appendChild(active_object_dom_element);
-				active_div_parent.style["display"] = 'inherit';
+				active_div.appendChild( active_object_dom_element );
+				active_div_parent.style[ "display" ] = 'inherit';
 			}
-			//right_top_div.style["right"] = "-150px";	
+			//right_top_div.style[ "right" ] = "-150px";	
 			var tw = new TWEEN.Tween( {right: 10} )
 	  		.to( { right: -150}, 700 )
 			.easing( TWEEN.Easing.Exponential.InOut )
-			.onComplete(onComplete)
+			.onComplete( onComplete )
 			.start();
 			tw.onUpdate	(
 							function() 
@@ -98,7 +98,7 @@ var EditorGUI = function(siteApp, bounds)
 								right_top_div.style.right = this.right + 'px';
 							}
 						)
-	  		siteApp.animateTW.start(1100);
+	  		siteApp.animateTW.start( 1100 );
 		}
 		closeActiveControl();
 		onCloseActiveGUI = onClose;
@@ -107,7 +107,7 @@ var EditorGUI = function(siteApp, bounds)
 		active_div_close.onclick = closeActiveControl;
 		animate();
 	}
-	_this.insertActiveControl = insertActiveControl;
+	this.insertActiveControl = insertActiveControl;
 
 	function openLightAgain()
 	{
@@ -118,16 +118,16 @@ var EditorGUI = function(siteApp, bounds)
 			currentRightControll.guiName = 'Lights';
 			_this.currentRightControll = currentRightControll;
 		}
-		if (currentRightControll === null)
+		if (currentRightControll === null )
 		{
 			again();	
 		}
 		else
 		{
-			if (currentRightControll.guiName == 'Lights')
+			if (currentRightControll.guiName == 'Lights' )
 			{
 				
-				//var dialog = new Dialog("Lighs are already opened.", "Open aborted.");		
+				//var dialog = new Dialog( "Lighs are already opened.", "Open aborted." );		
 
 			}
 			else
@@ -139,19 +139,19 @@ var EditorGUI = function(siteApp, bounds)
 			}
 		}
 	}
-	_this.openLightAgain = openLightAgain;
+	this.openLightAgain = openLightAgain;
 
 	function lookAtActive()
 	{
-		if (currentRightControll !== null)
+		if (currentRightControll !== null )
 		{
-			if (currentRightControll.guiName == 'Lights')
+			if (currentRightControll.guiName == 'Lights' )
 			{
 				siteApp.lookAtReset();
 			}
 			else
 			{
-				siteApp.lookAt(currentRightControll.item_3d.absolutePosition());
+				siteApp.lookAt(currentRightControll.item_3d.absolutePosition() );
 			}
 		}
 		else
@@ -159,54 +159,54 @@ var EditorGUI = function(siteApp, bounds)
 			siteApp.lookAtReset();
 		}
 	}
-	_this.lookAtActive = lookAtActive;
+	this.lookAtActive = lookAtActive;
 
-	function makeRightGUI_for_item_3d(item_3d)
+	function makeRightGUI_for_item_3d( item_3d)
 	{
-		if (currentRightControll !== null)
+		if (currentRightControll !== null )
 		{
 			closeActiveControl();
 			currentRightControll.free();
 			currentRightControll = null;
 		}
-		var item_3d_gui = new Item_3d_GUI(this, item_3d);
+		var item_3d_gui = new Item_3d_GUI( this, item_3d);
 		currentRightControll = item_3d_gui;
 		currentRightControll.name = item_3d.auto_label;
 		_this.currentRightControll = currentRightControll;
 	}
-	_this.makeRightGUI_for_item_3d = makeRightGUI_for_item_3d;
+	this.makeRightGUI_for_item_3d = makeRightGUI_for_item_3d;
 
-	function makeRightGUI_for_group(group)
+	function makeRightGUI_for_group( group )
 	{
-		if (currentRightControll !== null)
+		if (currentRightControll !== null )
 		{
 			closeActiveControl();
 			currentRightControll.free();
 			currentRightControll = null;
 		}
-		var group_right_gui = new GroupRightGUI(this, group);
+		var group_right_gui = new GroupRightGUI( this, group );
 		currentRightControll = group_right_gui;
 		currentRightControll.name = group.parameters.auto_label;
 		_this.currentRightControll = currentRightControll;
 	}
-	_this.makeRightGUI_for_group = makeRightGUI_for_group;
+	this.makeRightGUI_for_group = makeRightGUI_for_group;
 
 
 	//LIGHTS - Start right menu
-	var lights_gui_parent = new dat.GUI({ autoPlace: false });
-	lights_gui_parent.domElement.style["max-height"] = (window.innerHeight - 10) + 'px';
-	lights_gui_parent.domElement.style["overflow-y"] = "scroll";
+	var lights_gui_parent = new dat.GUI( { autoPlace: false } );
+	lights_gui_parent.domElement.style[ "max-height" ] = (window.innerHeight - 10 ) + 'px';
+	lights_gui_parent.domElement.style[ "overflow-y" ] = "scroll";
 
-	right_top_div.appendChild(lights_gui_parent.domElement);
+	right_top_div.appendChild( lights_gui_parent.domElement );
 
-	lightsGUI = new LightsGUI(_this, lights_gui_parent, active_div);
+	lightsGUI = new LightsGUI( _this, lights_gui_parent, active_div);
 	currentRightControll = lightsGUI;
 	currentRightControll.guiName = 'Lights';
-	_this.currentRightControll = currentRightControll;
+	this.currentRightControll = currentRightControll;
 
 	//Left MENU
-	var leftMenu = new LeftMenu(_this, left_top_div);
-	_this.leftMenu = leftMenu;
+	var leftMenu = new LeftMenu( _this, left_top_div);
+	this.leftMenu = leftMenu;
 
 	//gui = new dat.GUI();
 	//this.gui = gui;
@@ -214,6 +214,6 @@ var EditorGUI = function(siteApp, bounds)
 	// var text3D = siteApp.siteText.textMesh1;
 	// var text3D = siteApp.textMesh1;
 
-	//var item_3d_gui = new Item_3d_GUI(this, textMesh1, "textMesh1");
-	//var item_3d_gui = new Item_3d_GUI(this, siteApp.sphereGroup, "sphere1");
+	//var item_3d_gui = new Item_3d_GUI( this, textMesh1, "textMesh1" );
+	//var item_3d_gui = new Item_3d_GUI( this, siteApp.sphereGroup, "sphere1" );
 };

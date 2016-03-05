@@ -1,4 +1,4 @@
-var Lights = function(siteApp) 
+var Lights = function( siteApp ) 
 { 
 	var scene = siteApp.scene; 
 	var spotLights = []; 
@@ -26,7 +26,7 @@ var Lights = function(siteApp)
 	function insertAmbientLight()
 	{
 		ambientLight = new THREE.AmbientLight( 0x0e0f0d );   
-		siteApp.rendererGL.setClearColor( parseInt(0x000000, 16), 1 );   
+		siteApp.rendererGL.setClearColor( parseInt( 0x000000, 16), 1 );   
 		siteApp.scene.add( ambientLight );
 	}
 
@@ -39,7 +39,7 @@ var Lights = function(siteApp)
 			.density - Defines how fast the fog will grow dense. Default is 0.00025.   
 		*/   
 
-		var color =0x000000;
+		var color = 0x000000;
 		var density = 0.00025;
 		siteApp.scene.fog = new THREE.FogExp2( color, density ); 
 	}
@@ -56,23 +56,23 @@ var Lights = function(siteApp)
 			decay -- The amount the light dims along the distance of the light.   
 		*/
 
-		var spotlight = new THREE.SpotLight(0xff7800);   
-		spotlight.position.set(-60, 150, 100);   
+		var spotlight = new THREE.SpotLight( 0xff7800 );   
+		spotlight.position.set( -60, 150, 100 );   
 		spotlight.intensity = 8;   
 		spotlight.distance = 1600;   
 		spotlight.angle = 0.624;   
 		spotlight.exponent = 19.3;   
 		spotlight.decay = 7.7;   
-		siteApp.scene.add(spotlight);   
-		spotLights.push(spotlight);   
+		siteApp.scene.add( spotlight );   
+		spotLights.push( spotlight );   
 		spotlight.auto_label = "Spot light " + getSpotMax();   
 		
 		// Target 0   
 		var lightTarget = new THREE.Object3D();   
-		lightTarget.position.set(150, 10, 100);   
-		siteApp.scene.add(lightTarget);   
+		lightTarget.position.set( 150, 10, 100 );   
+		siteApp.scene.add( lightTarget );   
 		spotlight.target = lightTarget;	   
-		targets.push(lightTarget);   
+		targets.push( lightTarget );   
 		lightTarget.auto_label = "Spot taget " + _spotMax;  
 	}   
 
@@ -88,23 +88,23 @@ var Lights = function(siteApp)
 			decay -- The amount the light dims along the distance of the light.   
 		*/
 
-		var spotlight = new THREE.SpotLight(0x7ccf7c);   
-		spotlight.position.set(220, 270, 360);   
+		var spotlight = new THREE.SpotLight( 0x7ccf7c);   
+		spotlight.position.set( 220, 270, 360 );   
 		spotlight.intensity = 4.2;   
 		spotlight.distance = 850;   
 		spotlight.angle = 0.243;   
 		spotlight.exponent = 12.3;   
 		spotlight.decay = 3;   
-		siteApp.scene.add(spotlight);   
-		spotLights.push(spotlight);   
+		siteApp.scene.add( spotlight );   
+		spotLights.push( spotlight );   
 		spotlight.auto_label = "Spot light " + getSpotMax();   
 		
 		// Target 1   
 		var lightTarget = new THREE.Object3D();   
-		lightTarget.position.set(60, 10, 60);   
-		siteApp.scene.add(lightTarget);   
+		lightTarget.position.set(60, 10, 60 );   
+		siteApp.scene.add( lightTarget );   
 		spotlight.target = lightTarget;	   
-		targets.push(lightTarget);   
+		targets.push( lightTarget );   
 		lightTarget.auto_label = "Spot taget " + _spotMax;  
 	}   
 
@@ -120,23 +120,23 @@ var Lights = function(siteApp)
 			decay -- The amount the light dims along the distance of the light.   
 		*/
 
-		var spotlight = new THREE.SpotLight(0x0000ff);   
-		spotlight.position.set(150, 280, 200);   
+		var spotlight = new THREE.SpotLight( 0x0000ff);   
+		spotlight.position.set( 150, 280, 200 );   
 		spotlight.intensity = 2;   
 		spotlight.distance = 0;   
 		spotlight.angle = 1.047;   
 		spotlight.exponent = 10;   
 		spotlight.decay = 1;   
-		siteApp.scene.add(spotlight);   
-		spotLights.push(spotlight);   
+		siteApp.scene.add( spotlight );   
+		spotLights.push( spotlight );   
 		spotlight.auto_label = "Spot light " + getSpotMax();   
 		
 		// Target 2   
 		var lightTarget = new THREE.Object3D();   
-		lightTarget.position.set(0, 0, 50);   
-		siteApp.scene.add(lightTarget);   
+		lightTarget.position.set( 0, 0, 50 );   
+		siteApp.scene.add( lightTarget );   
 		spotlight.target = lightTarget;	   
-		targets.push(lightTarget);   
+		targets.push( lightTarget );   
 		lightTarget.auto_label = "Spot taget " + _spotMax;  
 	}   
 
@@ -152,9 +152,9 @@ var Lights = function(siteApp)
 
 		var light = new THREE.PointLight( 0xffffff, 1, 300 );   
 		light.decay = 1;   
-		light.position.set(50, 50, -250);   
+		light.position.set( 50, 50, -250 );   
 		scene.add( light );   
-		pointLights.push(light);   
+		pointLights.push( light );   
 		light.auto_label = "Point light " + getPointMax();   
 	}   
    
@@ -170,9 +170,9 @@ var Lights = function(siteApp)
 
 		var light = new THREE.PointLight( 0xffe100, 2.2, 200 );   
 		light.decay = 3.3;   
-		light.position.set(-150, 90, 90);   
+		light.position.set( -150, 90, 90 );   
 		scene.add( light );   
-		pointLights.push(light);   
+		pointLights.push( light );   
 		light.auto_label = "Point light " + getPointMax();   
 	}   
    

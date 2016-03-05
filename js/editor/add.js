@@ -1,22 +1,22 @@
-var RemoveObject3d = function(editorGUI, item_3d)
+var RemoveObject3d = function( editorGUI, item_3d)
 {
-	editorGUI.siteApp.lookAt(item_3d.absolutePosition());
+	editorGUI.siteApp.lookAt( item_3d.absolutePosition() );
 	function remove()
 	{
 		editorGUI.openLightAgain();
 		var remove_3d_objects = item_3d.remove_3d_objects;
 		var remove_button = item_3d.remove_button;
-		remove_3d_objects.remove(remove_button);
+		remove_3d_objects.remove(remove_button );
 		
 		var siteApp = editorGUI.siteApp;
-		siteApp.sceneObjects.remove(item_3d);	
+		siteApp.sceneObjects.remove( item_3d);	
 
 		var item_3d_folder = item_3d.item_3d_folder;
 		var selectButton = item_3d.selectButton;
-		item_3d_folder.remove(selectButton);
+		item_3d_folder.remove( selectButton );
 	}
 
-	function onClick(val)
+	function onClick( val )
 	{
 		if ( val == 1 ) 
 		{ 
@@ -24,10 +24,10 @@ var RemoveObject3d = function(editorGUI, item_3d)
 		}
 		editorGUI.lookAtActive();	
 	}
-	new DialogYesNo("Do you want to remove " + item_3d.auto_label + "?", "Remove object from scene", onClick);
+	new DialogYesNo( "Do you want to remove " + item_3d.auto_label + "?", "Remove object from scene", onClick);
 }	
 
-var InsertNewText3D = function(editorGUI, remove_3d_objects, item_3d_folder)
+var InsertNewText3D = function( editorGUI, remove_3d_objects, item_3d_folder )
 {
 	var siteApp = editorGUI.siteApp;
 	var item_3d_array = siteApp.sceneObjects.item_3d_array;
@@ -71,26 +71,26 @@ var InsertNewText3D = function(editorGUI, remove_3d_objects, item_3d_folder)
 	var insert3dText = new Insert3dText( siteApp, siteApp.sceneObjects, parameters, paramPhong );
 	var item_3d = insert3dText.item_3d;
 
-	editorGUI.makeRightGUI_for_item_3d(insert3dText.item_3d);
+	editorGUI.makeRightGUI_for_item_3d( insert3dText.item_3d);
 
 	function select()
 	{
-		editorGUI.makeRightGUI_for_item_3d(item_3d);
+		editorGUI.makeRightGUI_for_item_3d( item_3d);
 	}
-	item_3d.selectButton = item_3d_folder.add({select: select}, 'select').name(item_3d.auto_label);
+	item_3d.selectButton = item_3d_folder.add( {select: select}, 'select' ).name( item_3d.auto_label );
 	item_3d.item_3d_folder = item_3d_folder;
 
 	function remove()
 	{
-		new RemoveObject3d(editorGUI, item_3d);
+		new RemoveObject3d( editorGUI, item_3d);
 	}
-	item_3d.remove_button = remove_3d_objects.add({remove: remove}, 'remove').name(item_3d.auto_label);
+	item_3d.remove_button = remove_3d_objects.add( {remove: remove}, 'remove' ).name( item_3d.auto_label );
 	item_3d.remove_3d_objects = remove_3d_objects;
 
 	siteApp.render();	
 }
 
-var InsertNewSphere = function(editorGUI, remove_3d_objects, item_3d_folder)
+var InsertNewSphere = function( editorGUI, remove_3d_objects, item_3d_folder )
 {
 	var siteApp = editorGUI.siteApp;
 	var item_3d_array = siteApp.sceneObjects.item_3d_array;
@@ -136,26 +136,26 @@ var InsertNewSphere = function(editorGUI, remove_3d_objects, item_3d_folder)
 	var sphere = new InsertSphere( siteApp, siteApp.sceneObjects, parameters, paramPhong );
 	var item_3d = sphere.item_3d;
 
-	editorGUI.makeRightGUI_for_item_3d(sphere.item_3d);
+	editorGUI.makeRightGUI_for_item_3d( sphere.item_3d);
 
 	function select()
 	{
-		editorGUI.makeRightGUI_for_item_3d(item_3d);
+		editorGUI.makeRightGUI_for_item_3d( item_3d);
 	}
-	item_3d.selectButton = item_3d_folder.add({select: select}, 'select').name(item_3d.auto_label);
+	item_3d.selectButton = item_3d_folder.add( {select: select}, 'select' ).name( item_3d.auto_label );
 	item_3d.item_3d_folder = item_3d_folder;
 
 	function remove()
 	{
-		new RemoveObject3d(editorGUI, item_3d);
+		new RemoveObject3d( editorGUI, item_3d);
 	}
-	item_3d.remove_button = remove_3d_objects.add({remove: remove}, 'remove').name(item_3d.auto_label);
+	item_3d.remove_button = remove_3d_objects.add( {remove: remove}, 'remove' ).name( item_3d.auto_label );
 	item_3d.remove_3d_objects = remove_3d_objects;
 
 	siteApp.render();	
 }
 
-var InsertNewPlain = function(editorGUI, remove_3d_objects, item_3d_folder)
+var InsertNewPlain = function( editorGUI, remove_3d_objects, item_3d_folder )
 {
 	var siteApp = editorGUI.siteApp;
 	var item_3d_array = siteApp.sceneObjects.item_3d_array;
@@ -197,26 +197,26 @@ var InsertNewPlain = function(editorGUI, remove_3d_objects, item_3d_folder)
 	var plainMesh = new InsertPlainMesh( siteApp, siteApp.sceneObjects, parameters, paramLambert );
 	var item_3d = plainMesh.item_3d;
 
-	editorGUI.makeRightGUI_for_item_3d(plainMesh.item_3d);
+	editorGUI.makeRightGUI_for_item_3d( plainMesh.item_3d);
 
 	function select()
 	{
-		editorGUI.makeRightGUI_for_item_3d(item_3d);
+		editorGUI.makeRightGUI_for_item_3d( item_3d);
 	}
-	item_3d.selectButton = item_3d_folder.add({select: select}, 'select').name(item_3d.auto_label);
+	item_3d.selectButton = item_3d_folder.add( {select: select}, 'select' ).name( item_3d.auto_label );
 	item_3d.item_3d_folder = item_3d_folder;
 
 	function remove()
 	{
-		new RemoveObject3d(editorGUI, item_3d);
+		new RemoveObject3d( editorGUI, item_3d);
 	}
-	item_3d.remove_button = remove_3d_objects.add({remove: remove}, 'remove').name(item_3d.auto_label);
+	item_3d.remove_button = remove_3d_objects.add( {remove: remove}, 'remove' ).name( item_3d.auto_label );
 	item_3d.remove_3d_objects = remove_3d_objects;
 
 	siteApp.render();	
 }
 
-var InsertNewBox = function(editorGUI, remove_3d_objects, item_3d_folder)
+var InsertNewBox = function( editorGUI, remove_3d_objects, item_3d_folder )
 {
 	var siteApp = editorGUI.siteApp;
 	var item_3d_array = siteApp.sceneObjects.item_3d_array;
@@ -268,22 +268,22 @@ var InsertNewBox = function(editorGUI, remove_3d_objects, item_3d_folder)
 
 	function select()
 	{
-		editorGUI.makeRightGUI_for_item_3d(item_3d);
+		editorGUI.makeRightGUI_for_item_3d( item_3d);
 	}
-	item_3d.selectButton = item_3d_folder.add({select: select}, 'select').name(item_3d.auto_label);
+	item_3d.selectButton = item_3d_folder.add( {select: select}, 'select' ).name( item_3d.auto_label );
 	item_3d.item_3d_folder = item_3d_folder;
 
 	function remove()
 	{
-		new RemoveObject3d(editorGUI, item_3d);
+		new RemoveObject3d( editorGUI, item_3d);
 	}
-	item_3d.remove_button = remove_3d_objects.add({remove: remove}, 'remove').name(item_3d.auto_label);
+	item_3d.remove_button = remove_3d_objects.add( {remove: remove}, 'remove' ).name( item_3d.auto_label );
 	item_3d.remove_3d_objects = remove_3d_objects;
 
 	siteApp.render();	
 }
 
-var InsertNewCustomSphere = function(editorGUI, remove_3d_objects, item_3d_folder)
+var InsertNewCustomSphere = function( editorGUI, remove_3d_objects, item_3d_folder )
 {
 	var siteApp = editorGUI.siteApp;
 	var item_3d_array = siteApp.sceneObjects.item_3d_array;
@@ -337,16 +337,16 @@ var InsertNewCustomSphere = function(editorGUI, remove_3d_objects, item_3d_folde
 
 	function select()
 	{
-		editorGUI.makeRightGUI_for_item_3d(item_3d);
+		editorGUI.makeRightGUI_for_item_3d( item_3d);
 	}
-	item_3d.selectButton = item_3d_folder.add({select: select}, 'select').name(item_3d.auto_label);
+	item_3d.selectButton = item_3d_folder.add( {select: select}, 'select' ).name( item_3d.auto_label );
 	item_3d.item_3d_folder = item_3d_folder;
 
 	function remove()
 	{
-		new RemoveObject3d(editorGUI, item_3d);
+		new RemoveObject3d( editorGUI, item_3d);
 	}
-	item_3d.remove_button = remove_3d_objects.add({remove: remove}, 'remove').name(item_3d.auto_label);
+	item_3d.remove_button = remove_3d_objects.add( {remove: remove}, 'remove' ).name( item_3d.auto_label );
 	item_3d.remove_3d_objects = remove_3d_objects;
 
 	siteApp.render();	

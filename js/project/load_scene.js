@@ -6,7 +6,7 @@ var InsertPlainMesh = function ( siteApp, sceneObjects, parameters, paramMateria
 	var material_name = parameters.material_name;
 	var parentGroup = parameters.parentGroup;
 
-	if (material_name == "MeshPhongMaterial" )
+	if ( material_name == "MeshPhongMaterial" )
 	{
 		meshMaterial = new THREE.MeshPhongMaterial( paramMaterial );
 	}
@@ -25,28 +25,28 @@ var InsertPlainMesh = function ( siteApp, sceneObjects, parameters, paramMateria
 		widthSegments — Optional. Default is 1. 
 		heightSegments — Optional. Default is 1.
 	*/
-	new SetTextureRepeat(meshMaterial, parameters);
+	new SetTextureRepeat( meshMaterial, parameters );
 
 	var plane = new THREE.Mesh( geometry, meshMaterial );
 	plane.parameters = parameters;
 
-	plane.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
-	plane.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);
-	plane.scale.set(parameters.scale_x, parameters.scale_y, parameters.scale_z);
+	plane.position.set( parameters.position_x, parameters.position_y, parameters.position_z );
+	plane.rotation.set( parameters.rotation_x, parameters.rotation_y, parameters.rotation_z );
+	plane.scale.set( parameters.scale_x, parameters.scale_y, parameters.scale_z );
 
-	if (isNull(parentGroup) == true) 
+	if ( isNull( parentGroup ) == true ) 
 		scene.add( plane );
 	else 
 		parentGroup.add( plane );
 
 
-	this.item_3d = new Item3D(sceneObjects, plane);
+	this.item_3d = new Item3D( sceneObjects, plane );
 	sceneObjects.item_3d_array.push( this.item_3d );
 	
 	return this;
 };
 
-var InsertBoxMesh = function ( siteApp, sceneObjects, parameters, paramMaterial)
+var InsertBoxMesh = function ( siteApp, sceneObjects, parameters, paramMaterial )
 {
 	var scene = siteApp.scene;
 	var item_3d_array = sceneObjects.item_3d_array;
@@ -64,23 +64,23 @@ var InsertBoxMesh = function ( siteApp, sceneObjects, parameters, paramMaterial)
 	{
 		meshMaterial = new THREE.MeshLambertMaterial( paramMaterial );	
 	}
-	new SetTextureRepeat(meshMaterial, parameters);
+	new SetTextureRepeat( meshMaterial, parameters );
 
 	var geometry = new THREE.BoxGeometry( 
 											parameters.width, parameters.height, parameters.depth, 
 											parameters.widthSegments, parameters.heightSegments, parameters.depthSegments 
 										 );
 	geometry.center( );
-	generateVertexColors(geometry);
+	generateVertexColors( geometry);
 	
 	var cube = new THREE.Mesh( geometry, meshMaterial );
 	cube.parameters = parameters;
 
-	cube.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
-	cube.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);
-	cube.scale.set(parameters.scale_x, parameters.scale_y, parameters.scale_z);
+	cube.position.set( parameters.position_x, parameters.position_y, parameters.position_z );
+	cube.rotation.set( parameters.rotation_x, parameters.rotation_y, parameters.rotation_z );
+	cube.scale.set( parameters.scale_x, parameters.scale_y, parameters.scale_z );
 
-	if (isNull(parentGroup) == true)
+	if ( isNull( parentGroup ) == true )
 	{
 		scene.add( cube );
 	}
@@ -89,13 +89,13 @@ var InsertBoxMesh = function ( siteApp, sceneObjects, parameters, paramMaterial)
 		parentGroup.add( cube );
 	}
 
-	this.item_3d = new Item3D(sceneObjects, cube);
+	this.item_3d = new Item3D( sceneObjects, cube );
 	sceneObjects.item_3d_array.push( this.item_3d );
 
 	return this;
 };
 
-var Insert3dText = function ( siteApp, sceneObjects, parameters, paramMaterial)
+var Insert3dText = function ( siteApp, sceneObjects, parameters, paramMaterial )
 {
 	var scene = siteApp.scene;
 	var item_3d_array = sceneObjects.item_3d_array;
@@ -105,7 +105,7 @@ var Insert3dText = function ( siteApp, sceneObjects, parameters, paramMaterial)
 
 	var textGeometry = new THREE.TextGeometry( parameters.text, parameters );	
 	textGeometry.center( );
-	generateVertexColors(textGeometry);
+	generateVertexColors( textGeometry);
 	var mesh;
 	var meshMaterial;
 	if ( material_name == "MeshPhongMaterial" )
@@ -116,20 +116,20 @@ var Insert3dText = function ( siteApp, sceneObjects, parameters, paramMaterial)
 	{
 		meshMaterial = new THREE.MeshLambertMaterial( paramMaterial );	
 	}
-	new SetTextureRepeat(meshMaterial, parameters);
+	new SetTextureRepeat( meshMaterial, parameters );
 
 	mesh = new THREE.Mesh( textGeometry, meshMaterial );
 	mesh.parameters = parameters;
 	this.mesh = mesh;
 
-	mesh.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
-	mesh.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);
-	mesh.scale.set(parameters.scale_x, parameters.scale_y, parameters.scale_z);
+	mesh.position.set( parameters.position_x, parameters.position_y, parameters.position_z );
+	mesh.rotation.set( parameters.rotation_x, parameters.rotation_y, parameters.rotation_z );
+	mesh.scale.set( parameters.scale_x, parameters.scale_y, parameters.scale_z );
 
 	mesh.castShadow = true;
 	siteApp.scene_objects_list.push( mesh );
 	
-	if (isNull(parentGroup) == true)
+	if ( isNull( parentGroup ) == true )
 	{
 		scene.add( mesh );
 	}
@@ -138,7 +138,7 @@ var Insert3dText = function ( siteApp, sceneObjects, parameters, paramMaterial)
 		parentGroup.add( mesh );
 	}
 
-	this.item_3d = new Item3D(sceneObjects, mesh);
+	this.item_3d = new Item3D( sceneObjects, mesh );
 	sceneObjects.item_3d_array.push( this.item_3d );
 	
 	return this;
@@ -199,7 +199,7 @@ var Mirror = function ( siteApp )
 	mirrorCube.visible = false;
 };
 
-var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMaterial)
+var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMaterial )
 {
 	var _this = this;
 	var scene = siteApp.scene;
@@ -211,7 +211,7 @@ var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMate
 	//SPHERE	
 	var geometry = new THREE.SphereGeometry( 
 		parameters.radius, parameters.widthSegments,  parameters.heightSegments, 
-		parameters.phiStart, parameters.phiLength,  parameters.thetaStart, parameters.thetaLength);
+		parameters.phiStart, parameters.phiLength,  parameters.thetaStart, parameters.thetaLength );
 
 	var meshMaterial;
 
@@ -223,13 +223,13 @@ var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMate
 	{
 		meshMaterial = new THREE.MeshLambertMaterial( paramMaterial );	
 	}
-	new SetTextureRepeat(meshMaterial, parameters);
+	new SetTextureRepeat( meshMaterial, parameters );
 
 	var sphere = new THREE.Mesh( geometry, meshMaterial );
 	sphere.parameters = parameters;
 	//WIRES
 	var wireGeometry = new THREE.WireframeGeometry( geometry );
-	var wireMaterial = new THREE.LineBasicMaterial( {color: 0xCCCCCC} );
+	var wireMaterial = new THREE.LineBasicMaterial( { color: 0xCCCCCC } );
 	var edgesMesh = new THREE.LineSegments( wireGeometry,  wireMaterial );
 
 	//GROUP
@@ -238,11 +238,11 @@ var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMate
 	sphereGroup.add( edgesMesh );
 	sphereGroup.add( sphere );
 
-	sphereGroup.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
-	sphereGroup.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);
-	sphereGroup.scale.set(parameters.scale_x, parameters.scale_y, parameters.scale_z);
+	sphereGroup.position.set( parameters.position_x, parameters.position_y, parameters.position_z );
+	sphereGroup.rotation.set( parameters.rotation_x, parameters.rotation_y, parameters.rotation_z );
+	sphereGroup.scale.set( parameters.scale_x, parameters.scale_y, parameters.scale_z );
 
-	if (isNull(parentGroup) == true)
+	if ( isNull( parentGroup ) == true )
 	{
 		scene.add( sphereGroup );
 	}
@@ -254,13 +254,13 @@ var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMate
 	_this.sphere = sphere;
 	_this.sphereGroup = sphereGroup;
 	
-	this.item_3d = new Item3D(sceneObjects, sphere, sphereGroup);
+	this.item_3d = new Item3D( sceneObjects, sphere, sphereGroup );
 	sceneObjects.item_3d_array.push( this.item_3d );
 
 	return this;
 };
 
-var InsertSphere = function ( siteApp, sceneObjects, parameters, paramMaterial)
+var InsertSphere = function ( siteApp, sceneObjects, parameters, paramMaterial )
 {
 	var _this = this;
 	var scene = siteApp.scene;
@@ -276,16 +276,16 @@ var InsertSphere = function ( siteApp, sceneObjects, parameters, paramMaterial)
 	);
 
 	var meshMaterial = new THREE.MeshPhongMaterial( paramMaterial );
-	new SetTextureRepeat(meshMaterial, parameters);
+	new SetTextureRepeat( meshMaterial, parameters );
 	
 	var sphere = new THREE.Mesh( geometry, meshMaterial );
 	sphere.parameters = parameters;
 
-	sphere.position.set(parameters.position_x, parameters.position_y, parameters.position_z);
-	sphere.rotation.set(parameters.rotation_x, parameters.rotation_y, parameters.rotation_z);
-	sphere.scale.set(parameters.scale_x, parameters.scale_y, parameters.scale_z);
+	sphere.position.set ( parameters.position_x, parameters.position_y, parameters.position_z );
+	sphere.rotation.set ( parameters.rotation_x, parameters.rotation_y, parameters.rotation_z );
+	sphere.scale.set 	( parameters.scale_x, parameters.scale_y, parameters.scale_z );
 
-	if (isNull(parentGroup) == true)
+	if ( isNull( parentGroup ) == true )
 	{
 		scene.add( sphere );
 	}
@@ -294,7 +294,7 @@ var InsertSphere = function ( siteApp, sceneObjects, parameters, paramMaterial)
 		parentGroup.add( sphere );
 	}
 	
-	this.item_3d = new Item3D(sceneObjects, sphere);
+	this.item_3d = new Item3D( sceneObjects, sphere );
 	sceneObjects.item_3d_array.push( this.item_3d );
 	
 	_this.sphere = sphere;
@@ -318,7 +318,7 @@ var LoadObjects = function( siteApp , sceneObjects )
 		auto_label: "Group 1",
 		customName: "G1"
 	}
-	var group_0 = new InsertGroup( siteApp, sceneObjects, parameters);
+	var group_0 = new InsertGroup( siteApp, sceneObjects, parameters );
 	
 	
 	var parameters =
@@ -335,7 +335,7 @@ var LoadObjects = function( siteApp , sceneObjects )
 		auto_label: "Group delete me",
 		customName: "G1"
 	}
-	var group_1 = new InsertGroup( siteApp, sceneObjects, parameters);
+	var group_1 = new InsertGroup( siteApp, sceneObjects, parameters );
 	
 	
 	var parameters =
@@ -352,7 +352,7 @@ var LoadObjects = function( siteApp , sceneObjects )
 		auto_label: "Group 2",
 		customName: "G1"
 	}
-	var group_2 = new InsertGroup( siteApp, sceneObjects, parameters);
+	var group_2 = new InsertGroup( siteApp, sceneObjects, parameters );
 	
 	
 	var parameters =
@@ -435,7 +435,7 @@ var LoadObjects = function( siteApp , sceneObjects )
 		fog : true,
 		wireframe : false,
 
-		map: textureMaps["checkerboard"],
+		map: textureMaps[ "checkerboard" ],
 		envMap : null,
 		lightMap : null,
 		specularMap : null,
