@@ -138,8 +138,6 @@ var Insert3dText = function ( siteApp, sceneObjects, parameters, paramMaterial)
 		parentGroup.add( mesh );
 	}
 
-	//mesh.auto_label = sceneObjects.autoLabelText3D();
-
 	this.item_3d = new Item3D(sceneObjects, mesh);
 	sceneObjects.item_3d_array.push( this.item_3d );
 	
@@ -255,17 +253,6 @@ var InsertCustomSphere = function ( siteApp, sceneObjects, parameters, paramMate
 
 	_this.sphere = sphere;
 	_this.sphereGroup = sphereGroup;
-
-	// this.item_3d = {
-	// 							parentGroup: parentGroup,
-	// 							material_name: material_name,
-	// 							geometry_name: "CustomSphere", 
-	// 							group: sphereGroup, 
-	// 							mesh: sphere, 
-	// 							auto_label: sceneObjects.autoLabelSphereCustom()
-	// 						};
-
-	// item_3d_array.push( this.item_3d );
 	
 	this.item_3d = new Item3D(sceneObjects, sphere, sphereGroup);
 	sceneObjects.item_3d_array.push( this.item_3d );

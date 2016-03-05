@@ -15,17 +15,17 @@ Productivity features:
 * Grouping
 * Materials
 
-Editor writes javascript for:
+The editor writes javascript for:
 * lights
 * single Object3D
 * all Object3D
 
-Main goal is to start with a new project a little bit faster.
+The main goal is to start with a new project a little bit faster.
 
 There are Project files and Edit files in separate folders.
-When you are done with editor you can remove Editor folder.
+When you are done with the editor you can remove Editor folder.
 
-Editor auto-generate javascript code for file lights.js and load_scene.is located in the project directoru.
+The editor writes javascript code for file lights.js and load_scene.js located in the project directory.
 You will get auto-generated code for lights.js and load_scene.js but you must manually overwrite it.
 
 Happy coding!
