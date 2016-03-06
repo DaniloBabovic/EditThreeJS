@@ -8,7 +8,6 @@ var RemoveSpotLight = function( editorGUI, spotlight )
 		
 		editorGUI.closeActiveControl();
 
-		//var spotlight = spotLights[i];
 		scene.remove( spotlight );
 		editorGUI.siteApp.render();
 
@@ -16,7 +15,6 @@ var RemoveSpotLight = function( editorGUI, spotlight )
 		{
 			editorGUI.openLightAgain();
 		}
-		//editorGUI.currentRightControll.removeSpotLight( i );
 		editorGUI.currentRightControll.removeSpotLight( spotlight );
 		spotlight.remove_lights.remove( spotlight.remove_button );
 	}
@@ -44,7 +42,6 @@ var RemovePointLight = function( editorGUI, pointlight )
 		{
 			editorGUI.openLightAgain();
 		}
-		//editorGUI.currentRightControll.removeSpotLight( i );
 		editorGUI.currentRightControll.removePointLight( pointlight );
 		pointlight.remove_lights.remove( pointlight.remove_button );
 	}
@@ -79,7 +76,6 @@ var AddSpotLight = function( editorGUI, remove_lights )
 		var max_ = editorGUI.siteApp.lights.getSpotMax();
 		spotlight.auto_label = 'Spot light ' + max_;
 
-		// Target 0   
 		lightTarget = new THREE.Object3D();   
 		lightTarget.position.set( -150, 10, 100 );   
 		scene.add( lightTarget );   
