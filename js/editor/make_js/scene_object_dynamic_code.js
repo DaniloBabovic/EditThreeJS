@@ -232,6 +232,80 @@ var MeshLambertMaterialCode = function( makeLine, material, tab)
 	ln(  tab + '};' );
 }
 
+var CylinderCode = function( makeLine, item_3d, tab)
+{
+	var positionCode = new PositionCode( makeLine, tab + '	' );
+	var mesh = item_3d.mesh;
+	var geometry = mesh.geometry;
+	//var p = mesh.parameters;
+	var p = geometry.parameters;
+	var ln = makeLine.line_tab_0;
+
+	/*
+		
+		CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
+
+		radiusTop — Radius of the cylinder at the top. Default is 20.
+		radiusBottom — Radius of the cylinder at the bottom. Default is 20.
+		height — Height of the cylinder. Default is 100.
+		
+		radiusSegments — Number of segmented faces around the circumference of the cylinder. Default is 8
+		heightSegments — Number of rows of faces along the height of the cylinder. Default is 1.
+		openEnded — A Boolean indicating whether the ends of the cylinder are open or capped. Default is false, meaning capped.
+		thetaStart — Start angle for first segment, default = 0 (three o'clock position).
+		thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
+	
+	*/
+
+	var tab2 = 	tab + '	';
+		
+	ln( tab + '\n' );
+	ln( tab + 'var parameters =\n' );
+	ln( tab + '{\n' );
+
+	ln( tab2 + 'material_name: "' + mesh.parameters.material_name + '",\n' );
+
+	new RepeatXY( makeLine, item_3d, tab);
+
+	if ( isNull( mesh.parameters.parentGroup ) == true )
+		ln( tab2 + 'parentGroup: null,\n' );
+	else
+		ln( tab2 + 'parentGroup: ' + mesh.parameters.parentGroup.parameters.codeName + ',\n' );
+
+	ln( tab + '\n' );
+
+	var text = 	tab2 + 	
+				'radiusTop: ' 			+ p.radiusTop + ', ' + 
+				'radiusBottom:' 			+ p.radiusBottom + ', ' + 
+				'height: ' 	+ p.height + ', \n' + 
+
+				tab2 + 
+				'radiusSegments: ' 	+ p.radialSegments + ', ' + 
+				'heightSegments: ' 	+ p.heightSegments + ', ' + 
+				'openEnded: ' 	+ p.openEnded + ',\n' + 
+				tab2 +
+				'thetaStart: ' 	+ p.thetaStart + ', ' + 
+				'thetaLength: ' 	+ p.thetaLength + ',' + 
+				'\n';
+				
+	ln( text );
+	positionCode.insert( mesh );
+	ln( tab + '};\n' );
+
+	var materialType = mesh.material.type;
+	if ( materialType == 'MeshPhongMaterial' )
+	{
+		new MeshPhongMaterialCode( makeLine, mesh.material, tab);
+	}
+	else if ( materialType == 'MeshLambertMaterial' )
+	{
+		new MeshLambertMaterialCode( makeLine, mesh.material, tab);
+	}
+	ln( tab + 	'var cylinderMesh = new InsertCylinderMesh( siteApp, sceneObjects, parameters, paramMaterial );\n' );
+
+
+}
+
 var PlainCode = function( makeLine, item_3d, tab)
 {
 	var positionCode = new PositionCode( makeLine, tab + '	' );
@@ -698,6 +772,10 @@ var MakeDynamicCode = function( sceneObjectsJSBuilder )
 		else if ( type == "PlaneGeometry" )
 		{
 			new PlainCode( makeLine, item, '	' );
+		}
+		else if ( type == "CylinderGeometry" )
+		{
+			new CylinderCode( makeLine, item, '	' );
 		}
 		else if ( type == "SphereGeometry" )
 		{

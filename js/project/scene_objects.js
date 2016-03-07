@@ -526,6 +526,7 @@ var SceneObjects = function( siteApp )
 	var group_array = [];
 	this.group_array = group_array;
 	
+	var _max_cylinder = 0;
 	var _max_group = 0;
 	var _max_plain = 0;
 	var _max_box = 0;
@@ -533,14 +534,17 @@ var SceneObjects = function( siteApp )
 	var _max_sphere_custom = 0;
 	var _max_3d_text = 0;
 
+
 	function autoLabel( geometryName )
 	{
+		if ( geometryName == 'CylinderGeometry' ) return autoLabelCylinder();
 		if ( geometryName == 'PlaneGeometry' ) return autoLabelPlain();
 		if ( geometryName == 'BoxGeometry' ) return autoLabelBox();
 		if ( geometryName == 'TextGeometry' ) return autoLabelText3D();
 		if ( geometryName == 'CustomSphere' ) return autoLabelSphereCustom();
 		if ( geometryName == 'SphereGeometry' ) return autoLabelSphere();
 		if ( geometryName == 'Group' ) return autoLabelGroup();
+
 		return null;
 	}
 	this.autoLabel = autoLabel;
@@ -551,6 +555,13 @@ var SceneObjects = function( siteApp )
 		return "Group " + _max_plain;
 	}
 	this.autoLabelGroup = autoLabelGroup;
+
+	function autoLabelCylinder()
+	{
+		_max_cylinder += 1;	
+		return "Cylinder " + _max_cylinder;
+	}
+	this.autoLabelCylinder = autoLabelCylinder;
 
 	function autoLabelPlain()
 	{

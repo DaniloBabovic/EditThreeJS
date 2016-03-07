@@ -1,3 +1,118 @@
+var CylinderGUI = function( item_3d_gui )
+{
+	
+	/*
+		CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
+
+		radiusTop — Radius of the cylinder at the top. Default is 20.
+		radiusBottom — Radius of the cylinder at the bottom. Default is 20.
+		height — Height of the cylinder. Default is 100.
+
+		radiusSegments — Number of segmented faces around the circumference of the cylinder. Default is 8
+		heightSegments — Number of rows of faces along the height of the cylinder. Default is 1.
+		openEnded — A Boolean indicating whether the ends of the cylinder are open or capped. Default is false, meaning capped.
+
+		thetaStart — Start angle for first segment, default = 0 (three o'clock position).
+		thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
+	*/
+
+	var parameters = item_3d_gui.mesh.parameters;
+
+	var start_radiusTop = parameters.width;
+	var start_radiusBottom = parameters.radiusBottom;
+	var start_height = parameters.height;
+
+	var start_radiusSegments = parameters.radiusSegments;
+	var start_heightSegments = parameters.heightSegments;
+	var start_openEnded = parameters.openEnded;
+
+	var start_thetaStart = parameters.thetaStart;
+	var start_thetaLength = parameters.thetaLength;
+
+
+	var topFolder = item_3d_gui.topFolder.addFolder( "Cylinder Geometry" );
+	
+	function reset()
+	{
+		try 
+		{
+			
+			parameters.radiusTop = start_radiusTop;
+			parameters.radiusBottom = start_radiusBottom;
+			parameters.height = start_height;
+
+			parameters.radiusSegments = start_radiusSegments;
+			parameters.heightSegments = start_heightSegments;
+			parameters.openEnded = start_openEnded;
+
+			parameters.thetaStart = start_thetaStart;
+			parameters.thetaLength = start_thetaLength;
+
+			update();
+			updateDisplay( item_3d_gui.gui );
+		}
+		catch( err ) 
+		{
+			var message = "Error, please click reset button again. Err message: \n" + err.message;
+    		alert( message );
+		}	
+	}
+
+	parameters[ "reset" ] = reset;
+
+	function update()
+	{
+		try 
+		{
+    		item_3d_gui.mesh.geometry.dispose();
+			var geometry = new THREE.CylinderGeometry	( 
+															parameters.radiusTop,
+															parameters.radiusBottom,
+															parameters.height,
+
+															parameters.radiusSegments,
+															parameters.heightSegments,
+															parameters.openEnded,
+
+															parameters.thetaStart,
+															parameters.thetaLength
+														);
+			geometry.center();
+			item_3d_gui.mesh.geometry = geometry;
+			siteApp.render();
+		}
+		catch( err ) 
+		{
+			var message = "Error, please click reset button. Err message: \n" + err.message;
+    		alert( message );
+		}
+	}
+
+	var radiusTop = topFolder.add( parameters, 'radiusTop' ).min( 1 ).max( 500 ).step( 1 );
+	var radiusBottom = topFolder.add( parameters, 'radiusBottom' ).min( 1 ).max( 500 ).step( 1 );
+	var height = topFolder.add( parameters, 'height' ).min( 1 ).max( 500 ).step( 1 );
+
+	var radiusSegments = topFolder.add( parameters, 'radiusSegments' ).min( 1 ).max( 200 ).step( 1 );
+	var heightSegments = topFolder.add( parameters, 'heightSegments' ).min( 1 ).max( 200 ).step( 1 );
+	var openEnded = topFolder.add( parameters, 'openEnded' );
+
+	var thetaStart = topFolder.add( parameters, 'thetaStart' ).min( -2 * Math.PI ).max(  2 * Math.PI  ).step( 0.01 );
+	var thetaLength = topFolder.add( parameters, 'thetaLength' ).min(  -2 * Math.PI  ).max( 2 * Math.PI ).step( 0.01 );
+
+	radiusTop.onChange( function( value ) { parameters.radiusTop = value; update( "radiusTop" ); } );
+	radiusBottom.onChange( function( value ) { parameters.radiusBottom = value; update( "radiusBottom" ); } );
+	height.onChange( function( value ) { parameters.height = value; update( "height" ); } );
+
+	radiusSegments.onChange( function( value ) { parameters.radiusSegments = Math.round(value); update( "radiusSegments" ); } );
+	heightSegments.onChange( function( value ) { parameters.heightSegments = Math.round(value); update( "heightSegments" ); } );
+	openEnded.onChange( function( value ) { parameters.openEnded = value; update( "openEnded" ); } );
+
+	thetaStart.onChange( function( value ) { parameters.thetaStart = value; update( "thetaStart" ); } );
+	thetaLength.onChange( function( value ) { parameters.thetaLength = value; update( "thetaLength" ); } );
+	
+	topFolder.add( parameters, 'reset' ).name( 'reset' );
+};
+
 var PlainGUI = function( item_3d_gui )
 {
 	/*
@@ -951,6 +1066,10 @@ var Item_3d_GUI = function( editorGUI, item_3d)
 	else if ( type == "PlaneGeometry" )
 	{
 		new PlainGUI( item_3d_gui );
+	}
+	else if ( type == "CylinderGeometry" )
+	{
+		new CylinderGUI( item_3d_gui );
 	}
 	else if ( type == "SphereGeometry" )
 	{

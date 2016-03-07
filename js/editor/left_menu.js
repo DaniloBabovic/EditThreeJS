@@ -175,11 +175,11 @@ var LeftMenu  = function( editorGUI )
 		}
 		var new_text_3d = new_button.add( { open: onNewText3D}, 'open' ).name( 'Text 3D' );
 
-		function onNewShereCustom()
+		function onNewSphereCustom()
 		{
 			new InsertNewCustomSphere( editorGUI, remove_3d_objects, select_folder );
 		}
-		var new_sphere_custom = new_button.add( { open: onNewShereCustom}, 'open' ).name( 'Sphere custom' );
+		var new_sphere_custom = new_button.add( { open: onNewSphereCustom}, 'open' ).name( 'Sphere custom' );
 
 		function onNewShere()
 		{
@@ -198,6 +198,12 @@ var LeftMenu  = function( editorGUI )
 			new InsertNewPlain( editorGUI, remove_3d_objects, select_folder );
 		}
 		var new_plain = new_button.add( { open: onNewPlain }, 'open' ).name( 'Plain' );
+
+		function onNewCylinder()
+		{
+			new InsertNewCylinder( editorGUI, remove_3d_objects, select_folder );
+		}
+		var new_cylinder = new_button.add( { open: onNewCylinder }, 'open' ).name( 'Cylinder' );
 	}
 
 	function insertRemove()

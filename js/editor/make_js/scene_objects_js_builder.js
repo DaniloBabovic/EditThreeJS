@@ -95,6 +95,12 @@ var Snippet = function( editorGUI, item_3d)
 		makeLine.line_tab_0( '\n' );
 		new PlainCode( makeLine, item_3d, '' );
 	}
+	else if ( type == "CylinderGeometry" )
+	{
+		makeLine.line_tab_0( "var InsertCylinderMesh = " + InsertCylinderMesh + ";" );
+		makeLine.line_tab_0( '\n' );
+		new CylinderCode( makeLine, item_3d, '' );
+	}
 	else if ( type == "SphereGeometry" )
 	{
 		makeLine.line_tab_0( "var InsertSphere = " + InsertSphere + ";" );

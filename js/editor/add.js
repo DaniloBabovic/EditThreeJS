@@ -351,3 +351,68 @@ var InsertNewCustomSphere = function( editorGUI, remove_3d_objects, item_3d_fold
 
 	siteApp.render();	
 }
+
+var InsertNewCylinder = function( editorGUI, remove_3d_objects, item_3d_folder )
+{
+	var siteApp = editorGUI.siteApp;
+	var item_3d_array = siteApp.sceneObjects.item_3d_array;
+	editorGUI.closeActiveControl();
+
+	//Cylinder
+	var parameters =	
+	{
+		materialType : "MeshLambertMaterial",
+
+		radiusTop: 6, radiusBottom: 6, height: 40, 
+		radiusSegments: 6, heightSegments: 6, openEnded: true, 
+		thetaStart: 0, thetaLength: 2 * Math.PI,
+
+		position_x: 50, position_y: 20, position_z: 250,
+		rotation_x: Math.PI/2, rotation_y: 0, rotation_z: 0,
+		scale_x: 1, scale_y: 1, scale_z: 1
+	};
+
+	var paramMaterial = 
+	{
+		transparent : true,
+		opacity : 0.9,
+
+		color: 0xAAAAAA,  emissive: 0x10eb29,
+		emissiveIntensity: 1,
+
+		//vertexColors: THREE.FaceColors,
+		side: THREE.DoubleSide, //THREE.BackSide THREE.DoubleSide
+		//blending: THREE.NormalBlending,
+
+		//map : null, envMap : null,
+		//lightMap : null, specularMap : null, alphaMap : null,
+
+		reflectivity: 0.8, refractionRatio: 0.9, //0-1
+
+		fog : true, 	wireframe : false,
+
+		polygonOffset: false, polygonOffsetFactor: 1, // positive value pushes polygon further away
+        polygonOffsetUnits: 1
+	}
+
+	var cylinderMesh = new InsertCylinderMesh( siteApp, siteApp.sceneObjects, parameters, paramMaterial );
+	var item_3d = cylinderMesh.item_3d;
+
+	editorGUI.makeRightGUI_for_item_3d( cylinderMesh.item_3d);
+
+	function select()
+	{
+		editorGUI.makeRightGUI_for_item_3d( item_3d);
+	}
+	item_3d.selectButton = item_3d_folder.add( {select: select}, 'select' ).name( item_3d.auto_label );
+	item_3d.item_3d_folder = item_3d_folder;
+
+	function remove()
+	{
+		new RemoveObject3d( editorGUI, item_3d);
+	}
+	item_3d.remove_button = remove_3d_objects.add( {remove: remove}, 'remove' ).name( item_3d.auto_label );
+	item_3d.remove_3d_objects = remove_3d_objects;
+
+	siteApp.render();	
+}

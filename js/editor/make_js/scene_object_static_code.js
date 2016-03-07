@@ -18,6 +18,9 @@ var MakeStaticCode = function( sceneObjectsJSBuilder )
 	// makeLine.line_tab_0( "var Item3D = " + Item3D + ";" );
 	// makeLine.line_tab_0( '\n' );
 
+	makeLine.line_tab_0( "var InsertCylinderMesh = " + InsertCylinderMesh + ";" );
+	makeLine.line_tab_0( '\n' );
+	
 	makeLine.line_tab_0( "var InsertPlainMesh = " + InsertPlainMesh + ";" );
 	makeLine.line_tab_0( '\n' );
 

@@ -1,3 +1,61 @@
+var InsertCylinderMesh = function ( siteApp, sceneObjects, parameters, paramMaterial )
+{
+	var scene = siteApp.scene;
+	var meshMaterial;
+
+	var material_name = parameters.material_name;
+	var parentGroup = parameters.parentGroup;
+
+	if ( material_name == "MeshPhongMaterial" )
+	{
+		meshMaterial = new THREE.MeshPhongMaterial( paramMaterial );
+	}
+	else
+	{
+		meshMaterial = new THREE.MeshLambertMaterial( paramMaterial );	
+	}
+
+	/*
+		CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
+
+		radiusTop — Radius of the cylinder at the top. Default is 20.
+		radiusBottom — Radius of the cylinder at the bottom. Default is 20.
+		height — Height of the cylinder. Default is 100.
+		radiusSegments — Number of segmented faces around the circumference of the cylinder. Default is 8
+		heightSegments — Number of rows of faces along the height of the cylinder. Default is 1.
+		openEnded — A Boolean indicating whether the ends of the cylinder are open or capped. Default is false, meaning capped.
+		thetaStart — Start angle for first segment, default = 0 (three o'clock position).
+		thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
+	*/
+
+	var geometry = new THREE.CylinderGeometry	( 	 
+													parameters.radiusTop, parameters.radiusBottom, parameters.height, 
+													parameters.radiusSegments, parameters.heightSegments,
+													parameters.openEnded, parameters.thetaStart,
+													parameters.thetaLength
+												);
+	new SetTextureRepeat( meshMaterial, parameters );
+
+	var cylinder = new THREE.Mesh( geometry, meshMaterial );
+	cylinder.parameters = parameters;
+
+	cylinder.position.set( parameters.position_x, parameters.position_y, parameters.position_z );
+	cylinder.rotation.set( parameters.rotation_x, parameters.rotation_y, parameters.rotation_z );
+	cylinder.scale.set( parameters.scale_x, parameters.scale_y, parameters.scale_z );
+
+	if ( isNull( parentGroup ) == true ) 
+		scene.add( cylinder );
+	else 
+		parentGroup.add( cylinder );
+
+
+	this.item_3d = new Item3D( sceneObjects, cylinder );
+	sceneObjects.item_3d_array.push( this.item_3d );
+	
+	return this;
+
+};
+
 var InsertPlainMesh = function ( siteApp, sceneObjects, parameters, paramMaterial )
 {
 	var scene = siteApp.scene;
@@ -696,5 +754,4 @@ var LoadObjects = function( siteApp , sceneObjects )
 		polygonOffsetUnits : 0
 	};
 	var boxMesh = new InsertBoxMesh( siteApp, sceneObjects, parameters, paramMaterial );
-
-}
+ }
