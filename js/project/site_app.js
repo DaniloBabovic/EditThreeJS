@@ -1,12 +1,12 @@
+var siteApp
 
-var siteApp;
 var url_params = {};
 
-if ( location.search ) 
+if ( location.search )
 {
     var parts = location.search.substring( 1 ).split( '&' );
 
-    for ( var i = 0; i < parts.length; i++ ) 
+    for ( var i = 0; i < parts.length; i++ )
     {
         var nv = parts[ i ].split( '=' );
         if ( !nv[ 0 ] ) continue;
@@ -16,9 +16,9 @@ if ( location.search )
 
 var xhttp = new XMLHttpRequest();
 
-xhttp.onreadystatechange = function() 
+xhttp.onreadystatechange = function()
 {
-    if (xhttp.readyState == 4 && xhttp.status == 200 ) 
+    if (xhttp.readyState == 4 && xhttp.status == 200 )
     {
        //alert( "OK" );
     }
@@ -26,228 +26,216 @@ xhttp.onreadystatechange = function()
 xhttp.open( "GET", "/analitic", true );
 xhttp.send();
 
+class InsertStats {
+    constructor(siteApp) {
 
-var SiteApp = function()
-{
-  	var _this = this;
-	var camera, scene, renderer, rendererGL, rendererAlias;
-	var controls, controlsTarget, stats;
-	
+        siteApp.stats = new Stats()
+		siteApp.stats.domElement.style.position = 'absolute'
+		siteApp.stats.domElement.style.bottom = '0px'
+		siteApp.stats.domElement.style.left = '0px'
+		document.getElementById( 'container' ).appendChild( siteApp.stats.domElement )
+    }
+}
 
-	var statsON = false;
-	var haveCss3dRenderer = false;
+class InsertOrbitControls {
 
-	var wheelMenu;
-	var floor;
-	var lights;
-	var sky;
-	var editorGUI;
+    constructor(siteApp) {
 
-	var sceneObjects;
+        let controlsTarget = new THREE.Object3D( )
 
-	var refract;
-	var haveRefract = false;
-	var nodepass;
-	var composer;
+		controlsTarget.position.y = 50
+		siteApp.scene.add( controlsTarget )
 
-	var haveGlitch = false;
-	var composer1;
-	
-	this.scene_objects_list = [];
+		siteApp.axisHelper = new THREE.AxisHelper( 5 )
+		controlsTarget.add( siteApp.axisHelper )
 
-	function insertStats()
+
+		let controls = new THREE.OrbitControls( siteApp.camera, siteApp.rendererGL.domElement )
+		controls.addEventListener   (
+                                        'change',
+                                        () => ( siteApp.render() )
+                                    )
+		controls.dampingFactor = 0.25
+		controls.enableZoom = true
+		controls.rotateSpeed = 0.4
+		controls.target.set(
+								controlsTarget.position.x,
+								controlsTarget.position.y,
+								controlsTarget.position.z
+							)
+		controls.update()
+        siteApp.controlsTarget = controlsTarget
+        siteApp.controls = controls
+    }
+}
+
+class LookUtils {
+
+    constructor( siteApp ) {
+
+        this.siteApp = siteApp
+
+        siteApp.lookAtReset = () => ( this.lookAtReset() )
+        siteApp.look = () => ( this.look() )
+        siteApp.lookAt = (position) => ( this.lookAt(position) )
+    }
+
+    lookAtReset()
 	{
-		statsON = true;
-
-		stats = new Stats();
-		stats.domElement.style.position = 'absolute';
-		stats.domElement.style.bottom = '0px';
-		stats.domElement.style.left = '0px';
-		document.getElementById( 'container' ).appendChild( stats.domElement );
-	}
-
-	function lookAtReset()
-	{
-		var tw = new TWEEN.Tween( controlsTarget.position )
+        let controlsTarget = this.siteApp.controlsTarget
+		let tw = new TWEEN.Tween( controlsTarget.position )
   		.to( { x: 0, y: 50, z: 0 }, 1000 )
 		.easing( TWEEN.Easing.Exponential.InOut )
-		.start();
+		.start()
 
 		tw.onUpdate	(
-						function() 
+						function()
 						{
 							controls.target.set(
-													controlsTarget.position.x, 
-													controlsTarget.position.y, 
+													controlsTarget.position.x,
+													controlsTarget.position.y,
 													controlsTarget.position.z
-												);
-							controls.update();
+												)
+							controls.update()
 						}
 					)
 		//.onComplete( onComplete )
-  		animateTW.start( 1100 );
+  		this.siteApp.animateTW.start( 1100 )
 	}
-	this.lookAtReset = lookAtReset;
 
-	function look( position )
+    look( position )
 	{
+        let controlsTarget = this.siteApp.controlsTarget
 		controlsTarget.position.x = position.x;
 		controlsTarget.position.y = position.y;
 		controlsTarget.position.z = position.z;
-		
-		controls.target.set(
-								position.x, 
-								position.y, 
-								position.z
-							);
-		controls.update();
-	}
-	this.look = look;
 
-	function lookAt( position )
+		siteApp.controls.target.set(
+        								position.x,
+        								position.y,
+        								position.z
+        							);
+		siteApp.controls.update();
+	}
+
+    lookAt( position )
 	{
-		var tw = new TWEEN.Tween( controlsTarget.position )
-  		.to( { x: position.x, y: position.y, z: position.z }, 1000 )
+        let controlsTarget = this.siteApp.controlsTarget
+        let controls = this.siteApp.controls
+		let tw = new TWEEN.Tween( controlsTarget.position )
+  		.to(
+                { x: position.x, y: position.y, z: position.z },
+                1000
+            )
 		.easing( TWEEN.Easing.Exponential.InOut )
 		.start();
 
 		tw.onUpdate	(
-						function() 
+						function()
 						{
 							//controls.target = controlsTarget.position;
 							controls.target.set(
-													controlsTarget.position.x, 
-													controlsTarget.position.y, 
+													controlsTarget.position.x,
+													controlsTarget.position.y,
 													controlsTarget.position.z
 												);
 							controls.update();
 						}
 					)
 		//.onComplete( onComplete )
-  		animateTW.start( 1100 );
+  		this.siteApp.animateTW.start( 1100 );
 	}
-	this.lookAt = lookAt;
-
-	function insertOrbitControls()
-	{
-		controlsTarget = new THREE.Object3D( );
-		_this.controlsTarget = controlsTarget;
-		controlsTarget.position.y = 50;
-		scene.add( controlsTarget );
-
-		var axisHelper = new THREE.AxisHelper( 5 );
-		controlsTarget.add( axisHelper );
-
-
-		controls = new THREE.OrbitControls( camera, rendererGL.domElement );
-		controls.addEventListener( 'change', render );
-		controls.dampingFactor = 0.25;
-		controls.enableZoom = true;
-		controls.rotateSpeed = 0.4;
-		controls.target.set(
-								controlsTarget.position.x, 
-								controlsTarget.position.y, 
-								controlsTarget.position.z
-							);
-		controls.update( );
-	}
-
-
-	function insertRenderer()
-	{
-		// renderer
-	    var with_alias = url_params.with_alias;
-	    if ( ( with_alias == 'true' ) || ( with_alias == true ) )
-	    {
-	    	rendererGL = new THREE.WebGLRenderer( { antialias: true } );	
-	    }
-	    else
-	    {
-	    	rendererGL = new THREE.WebGLRenderer( { antialias: false } );
-	    }
-	    rendererGL.setSize( window.innerWidth, window.innerHeight );
-	    document.body.appendChild( rendererGL.domElement );
-	    _this.rendererGL = rendererGL;
-	}
-
-	function init ()
-	{
-	    insertRenderer();
-
-	    window.addEventListener( 'resize', onWindowResize, false );
-
-	    // scene
-	    scene = new THREE.Scene();
-	    _this.scene = scene;
-	    
-	    var axisHelper = new THREE.AxisHelper( 30 );
-		scene.add( axisHelper );
-
-	    // camera
-	    camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
-		camera.position.x = -100;
-		camera.position.y = 200;
-		camera.position.z = 400;
-
-		_this.camera = camera;
-
-	
-		lights = new Lights( _this );
-		_this.lights = lights;
-
-		sky = new Sky( _this );
-		var sceneObjects = new SceneObjects( _this );
-		_this.sceneObjects = sceneObjects;
-
-		insertStats();
-
-		var bounds = 	{
-							x_min: -500, x_max: 500, 
-							y_min: -500, y_max: 500, 
-							z_min: -500, z_max: -500
-						};
-
-		insertOrbitControls( );
-		editorGUI = new EditorGUI( _this, bounds );
-	}
-
-	function onWindowResize()
-	{
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-
-		rendererGL.setSize( window.innerWidth, window.innerHeight );
-		if (haveCss3dRenderer )
-		{
-			renderer.setSize( window.innerWidth, window.innerHeight );
-		}
-		render();
-	}
-
-	function render()
-	{
-		_this.sceneObjects.render(); //Mirror
-
-		if ( statsON)
-		{
-			stats.update();	
-		}
-		rendererGL.render( scene, camera );
-	}
-
-	this.render = render;
-	
-	init();
-	this.scene = scene;
-	this.controls = controls;
-	this.camera = camera;
-	
-
-	render();
-	
-	var animateTW = new AnimateTW( this );
-	animateTW.start( 5000 );
-	this.animateTW = animateTW;
-
 }
+
+class SiteApp {
+
+    constructor(haveStats = true, controlsType = "orbit") {
+
+        this.aaa = "SiteApp"
+        this.scene_objects_list = [];
+        this.haveStats = haveStats
+        this.insertRenderer()
+
+	    // Scene
+	    this.scene = new THREE.Scene()
+
+        this.axisHelper = new THREE.AxisHelper( 30 )
+		this.scene.add( this.axisHelper )
+
+	    // Camera
+	    this.camera = new THREE.PerspectiveCamera  (   40,
+                                                        window.innerWidth / window.innerHeight,
+                                                        1,
+                                                        10000
+                                                    )
+        this.camera.position.set(-100, 200, 400)
+
+        //Lights
+		this.lights = new Lights( this )
+
+        //Sky
+		this.sky = new Sky( this )
+
+        //Scene Objects
+		this.sceneObjects = new SceneObjects( this )
+
+        //Stats
+        if (haveStats) { new InsertStats( this ) }
+
+        this.render()
+
+        //Animate
+    	this.animateTW = new AnimateTW( this )
+        this.animateTW.start( 5000 )
+
+        window.addEventListener( 'resize', ( ) => ( this.onWindowResize() ), false )
+
+        new LookUtils(this)
+
+        //Orbit
+        if (controlsType = 'orbit') { new InsertOrbitControls ( this ) }
+
+        //Editor
+		this.bounds = 	{
+							x_min: -500, x_max: 500,
+							y_min: -500, y_max: 500,
+							z_min: -500, z_max: -500
+						}
+		this.editorGUI = new EditorGUI( this, this.bounds )
+    }
+
+    insertRenderer() {
+
+        let with_alias = url_params.with_alias
+        this
+        if ( ( with_alias == 'true' ) || ( with_alias == true ) )
+        {
+            this.rendererGL = new THREE.WebGLRenderer( { antialias: true } )
+        }
+        else
+        {
+            this.rendererGL = new THREE.WebGLRenderer( { antialias: false } )
+        }
+        this.rendererGL.setSize( window.innerWidth, window.innerHeight )
+        document.body.appendChild( this.rendererGL.domElement )
+    }
+
+    onWindowResize() {
+
+        this.camera.aspect = window.innerWidth / window.innerHeight
+		this.camera.updateProjectionMatrix()
+
+		this.rendererGL.setSize( window.innerWidth, window.innerHeight )
+		this.render()
+    }
+
+    render()
+    {
+        this.sceneObjects.render() //Mirror
+
+		if ( this.haveStats ) {	this.stats.update() }
+		this.rendererGL.render( this.scene, this.camera )
+    }
+}
+
 siteApp = new SiteApp();
