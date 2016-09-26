@@ -24,7 +24,7 @@ xhttp.onreadystatechange = function()
     }
 };
 xhttp.open( "GET", "/analitic", true );
-xhttp.send();
+//xhttp.send();
 
 class InsertStats {
     constructor(siteApp) {
@@ -76,13 +76,14 @@ class LookUtils {
         this.siteApp = siteApp
 
         siteApp.lookAtReset = () => ( this.lookAtReset() )
-        siteApp.look = () => ( this.look() )
+        siteApp.look = ( position ) => ( this.look( position ) )
         siteApp.lookAt = (position) => ( this.lookAt(position) )
     }
 
     lookAtReset()
 	{
         let controlsTarget = this.siteApp.controlsTarget
+        let controls = this.siteApp.controls
 		let tw = new TWEEN.Tween( controlsTarget.position )
   		.to( { x: 0, y: 50, z: 0 }, 1000 )
 		.easing( TWEEN.Easing.Exponential.InOut )
@@ -106,16 +107,17 @@ class LookUtils {
     look( position )
 	{
         let controlsTarget = this.siteApp.controlsTarget
+        let controls = this.siteApp.controls
 		controlsTarget.position.x = position.x;
 		controlsTarget.position.y = position.y;
 		controlsTarget.position.z = position.z;
 
-		siteApp.controls.target.set(
+		controls.target.set(
         								position.x,
         								position.y,
         								position.z
         							);
-		siteApp.controls.update();
+		controls.update();
 	}
 
     lookAt( position )
